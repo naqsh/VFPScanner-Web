@@ -10,7 +10,7 @@ import { PricingTable } from "@/components/sections/pricing-table";
 import { ProofStats } from "@/components/sections/proof-stats";
 import { Section } from "@/components/sections/section";
 import { Steps } from "@/components/sections/steps";
-import { homeFeatures, homeStats, homeSteps } from "@/lib/home-content";
+import { homeFeatures, homeStats, homeSteps } from "@/content/data/home";
 import { tiers } from "@/lib/pricing";
 
 describe("sections", () => {

@@ -1,3 +1,4 @@
+import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
 
 import { securityHeaders } from "./lib/security-headers";
@@ -9,6 +10,7 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   poweredByHeader: false,
+  // MDX is imported from content/ (not used as routes), so pageExtensions stay default.
   turbopack: {
     rules: {
       "*.css": {
@@ -22,4 +24,11 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// Plugins as strings so Turbopack can use them (node_modules/next/dist/docs/01-app/02-guides/mdx.md).
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: ["remark-gfm"],
+  },
+});
+
+export default withMDX(nextConfig);

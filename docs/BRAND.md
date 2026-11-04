@@ -65,7 +65,8 @@ Type: Geist Sans (text), Geist Mono (code, file names, eyebrows), self-hosted. S
 - Reads PJX, PRG, SCX, VCX, FRX, LBX, MNX, DBC, DBF with its own reader
 - 13 migration-risk patterns; SQL Server type mapping for every field
 - Flags invoice / VAT / 1099 / payroll / EDI data
-- Tested on VFPX GoFish, PEMEditor, Thor and three public ERPs on GitHub; 19–28% of real ERP code was duplicates or old copies
+- Tested on VFPX GoFish, PEMEditor, Thor and public ERPs on GitHub; on **two** open-source ERPs, 19–28% of the code was duplicates or old copies (scanner README)
+- Sample report: GoFish (open source) — `frontend/public/images/sample-report-gofish.webp`
 
 ## Never
 

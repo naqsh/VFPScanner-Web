@@ -15,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { homeFeatures, homeStats, homeSteps } from "@/lib/home-content";
+import { homeFeatures, homeStats, homeSteps } from "@/content/data/home";
 import { PRICING_STATUS, tiers } from "@/lib/pricing";
 
 // VW-009: internal style guide. Not indexed; not served on the Vercel production deployment.

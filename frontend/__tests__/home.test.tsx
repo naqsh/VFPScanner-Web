@@ -4,14 +4,20 @@ import { describe, expect, it } from "vitest";
 import Home from "@/app/page";
 import { DevConfigBanner } from "@/components/dev-config-banner";
 import { featureStatus, parseEnv } from "@/lib/env";
-import { site } from "@/lib/site";
 
-describe("Home (placeholder)", () => {
-  it("renders one h1 with the tagline", () => {
+describe("Home", () => {
+  it("renders one h1 that leads with the deadlines", () => {
     render(<Home />);
     const headings = screen.getAllByRole("heading", { level: 1 });
     expect(headings).toHaveLength(1);
-    expect(headings[0]).toHaveTextContent(site.tagline);
+    expect(headings[0]).toHaveTextContent(/before the deadlines/);
+  });
+
+  it("shows the verified deadline facts and six featured FAQs", () => {
+    const { container } = render(<Home />);
+    expect(screen.getByText(/19 November 2026/, { selector: "p" })).toBeInTheDocument();
+    expect(screen.queryByText("To verify")).not.toBeInTheDocument();
+    expect(container.querySelectorAll("#faq details")).toHaveLength(6);
   });
 
   it("never names a former employer or competitor", () => {

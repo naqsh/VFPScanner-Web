@@ -12,7 +12,7 @@ Progress tracker for all epics. Sync when JSON tickets or completion status chan
 |---|---|---|---|---|---|
 | VW-E1 | Foundation — scaffold, Next.js 16, tooling, CI, Vercel | `epic/VW-E1-foundation` | VW-001..007 | S | ✅ 2026-11-04 (VW-006 Vercel import: owner) |
 | VW-E2 | Brand and design system | `epic/VW-E2-brand-design` | VW-008..011 | S | ✅ 2026-11-04 (branch stacked on VW-E1) |
-| VW-E3 | Core pages and content | `epic/VW-E3-core-pages` | VW-012..017 | M | ⬜ |
+| VW-E3 | Core pages and content | `epic/VW-E3-core-pages` | VW-012..017 | M | ✅ 2026-11-04 (stacked on VW-E2) |
 | VW-E4 | Motion graphics | `epic/VW-E4-motion` | VW-018..022 | M | ⬜ |
 | VW-E5 | SEO / AIO / GEO | `epic/VW-E5-seo-geo` | VW-023..029 | M | ⬜ |
 | VW-E6 | Leads, payments and AI assistant | `epic/VW-E6-leads-payments-ai` | VW-030..036 | L | ⬜ |
@@ -43,4 +43,10 @@ VW-E4, VW-E5 and VW-E6 can run in parallel after VW-E3.
 | VW-009 | Final tokens + style guide | ✅ 2026-11-04 — `/styleguide` (noindex, 404 on Vercel prod), axe clean light/dark |
 | VW-010 | Layout shell | ✅ 2026-11-04 — skip link, sticky header, aria-current nav, `<dialog>` mobile menu, footer, custom 404 |
 | VW-011 | Base sections | ✅ 2026-11-04 — Section, Hero, FeatureGrid, Steps, ProofStats, PricingTable, Faq, CtaBand, FactBlock |
-| VW-012 | MDX content pipeline | ⬜ next (VW-E3) |
+| VW-012 | MDX content pipeline | ✅ `@next/mdx` + remark-gfm, `export const meta` validated by Zod, build fails naming the file |
+| VW-013 | Home page | ✅ deadline hook, verified FactBlocks, steps, scan findings, proof, pricing, 6 FAQs, CTA |
+| VW-014 | Scanner, Assessment, Migration, Retainer | ✅ real rule texts from Rules.cs, GoFish sample report image |
+| VW-015 | Pricing, FAQ (23), About, Contact | ✅ contact form + booking disabled until VW-E6 |
+| VW-016 | Free-scan page | ✅ UI + CLI steps, SmartScreen, no-.NET; download disabled until VW-031 |
+| VW-017 | Legal templates | ✅ privacy, terms, refunds, imprint — template banner + noindex; **owner review before launch** |
+| VW-018 | Motion primitives | ⬜ next (VW-E4) |

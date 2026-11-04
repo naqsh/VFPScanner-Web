@@ -1,0 +1,29 @@
+export const meta = {
+  title: "The FoxPro scanner: code, data and risk",
+  description:
+    "What the free FoxPro scanner reads, the 13 migration-risk patterns it finds, how it profiles DBF data for SQL Server, and why your code stays on your PC.",
+  updated: "2026-11-04",
+};
+
+## How it works
+
+Point the scanner at the folder that holds your application. It walks every file, reads FoxPro's own formats with its own reader, and writes two files:
+
+- `vfp-scan.html`: a one-page report you can read in a browser or send to someone
+- `vfp-scan.json`: the full detail, with every code unit, every table and every field with a proposed SQL Server type
+
+You can run it from the browser interface, which opens only on your own machine at `127.0.0.1`, or from the command line. Both give the same result.
+
+## How risk is rated
+
+Each risk pattern has a weight. A module scores **High** at 12 or more weighted points and **Medium** at 4 or more. Application size uses code lines plus forms, reports and labels, after removing duplicates and old copies.
+
+These are heuristics for ranking modules, not effort estimates. Effort ranges come from the [Migration Assessment](/assessment), where a person reviews the findings with you.
+
+## Privacy
+
+- Source files and tables are opened read-only.
+- No table values are written to the output, only counts and names.
+- Nothing is sent over the network.
+- The browser interface listens on `127.0.0.1` only, so other machines cannot reach it.
+- Uploaded zip files are extracted to a temporary folder, scanned, then deleted.

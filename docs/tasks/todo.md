@@ -72,11 +72,66 @@
 - Light-theme risk colours darkened (amber 3.96:1 and green 4.48:1 on badge backgrounds → pass 4.5:1)
 - Stage cards and CTA band got a faint ring: in dark mode they had the same colour as the page
 
-## Next: VW-E3 Core pages and content (to confirm)
+## VW-E3 — done 2026-11-04 (owner: "go next")
 
-- [ ] VW-012 MDX content pipeline
-- [ ] VW-013 Home page (real copy)
-- [ ] VW-014 Scanner, Assessment, Migration, Retainer
-- [ ] VW-015 Pricing, FAQ, About, Contact
-- [ ] VW-016 Free-scan page
-- [ ] VW-017 Legal pages (templates for owner review)
+**Branch:** `epic/VW-E3-core-pages`, stacked on `epic/VW-E2-brand-design` (VW-E1/E2 PRs not merged yet).
+**Defaults applied:** D3 prices stay draft (labelled); D6 founder shown as "Kashif" only; location not shown on About (owner to decide).
+
+### Facts checked before writing (2026-11-04)
+
+| Fact | Source | Result |
+|---|---|---|
+| DE: receive e-invoices since 1 Jan 2025; issue from 1 Jan 2027 if 2026 turnover > €800,000; all from 1 Jan 2028 | IHK Stuttgart (15.10.2026); IHK Hannover on BMF letter of 15.10.2026 (clarifications, deadlines unchanged) | ✅ verified (BMF site blocks automated reading — owner may want to add the BMF FAQ link by hand) |
+| US: last day to file through FIRE 19 Nov 2026, 3 p.m. ET; IRIS only e-filing system from Jan 2027 | IRS QuickAlerts, September 2026 | ✅ verified — **brief said "end of December": out of date** |
+| Scanner has 13 risk rules + 5 compliance signals | `VFPScanner-v0.2/Rules.cs` | ✅ (README list omits SQL pass-through) |
+| 19–28% duplicates/old copies | README: **two** open-source ERPs | ✅ corrected from "three" |
+| .NET 8 end of support 10 Nov 2026 | .NET Blog | ✅ → migration target "current LTS (.NET 10)"; scanner itself should move off net8.0 |
+
+### Plan
+
+- [x] VW-012 `@next/mdx` + `remark-gfm`; `content/pages/*.mdx` with `export const meta` validated by Zod (`lib/content.ts`); invalid meta fails build naming the file; `mdx-components.tsx` prose styles; test validates every MDX file
+- [x] VW-013 Home: deadline hook → problem → how it works → what the scan finds → proof → pricing teaser → FAQ (6) → CTA; FactBlocks with verified sources
+- [x] VW-014 Scanner (file types, 13 rules with real "why it matters", data profile, clean-up, compliance signals, privacy, known limits, GoFish sample report image), Assessment (deliverables, 5–10 days, S/M/L, button → contact), Migration (phases, .NET LTS + SQL Server), Retainer
+- [x] VW-015 Pricing (table + notes), FAQ (20–30, grouped), About (no ex-employer), Contact (form + booking placeholders, disabled until VW-E6)
+- [x] VW-016 Free scan: what it does, needs, UI + CLI steps, what to share, SmartScreen + no-.NET answers
+- [x] VW-017 Privacy, Terms, Refunds, Imprint — templates with placeholders, "review before launch" banner, noindex
+
+### Edge cases
+
+- Invalid MDX meta → build error naming the file
+- Pages read well with JS off and motion off
+- No invented proof; Macrosoft never mentioned (test scans all content)
+- Legal pages clearly marked as templates, not indexed
+
+### New open decisions
+
+| # | Decision | Needed by |
+|---|---|---|
+| D7 | Public contact email (and domain) | VW-031 / launch |
+| D8 | Publish scanner as self-contained Windows exe (no .NET install) and move it off .NET 8 | VW-016 download / launch |
+| D9 | Show location (Pakistan) on About? Imprint needs a postal address anyway | VW-017 review |
+
+### Evidence (VW-E3)
+
+- `npm run verify` ✅ — lint, typecheck, 70 unit tests (90% statements), static build of 18 routes
+- `npm run test:e2e` ✅ — 79 passed, 17 skipped by design; every page: 200, one h1, axe 0 violations light + dark, no horizontal scroll (desktop + Pixel 7)
+- Content tests: every MDX meta valid and renders; legal pages are templates + noindex; 23 FAQs, 6 featured; 13 risk rules / 5 signals; all facts verified; no ex-employer name in any source file
+- Screenshots reviewed: home dark/light, scanner, assessment, pricing, free scan (mobile), FAQ (mobile dark), privacy
+
+### Owner review before launch (promises and policies written as defaults)
+
+- [ ] Assessment process: "kick-off call about 45 minutes", "questions in writing", "you keep the report" (assessment.mdx)
+- [ ] "We can work under your NDA" (assessment.mdx, faq.mdx, contact.mdx)
+- [ ] Retainer contents: fixes, small changes, security patches, format updates (retainer.mdx)
+- [ ] About page wording, first person (about.mdx)
+- [ ] Draft prices (D3) — `docs/PRICING.md` + `frontend/lib/pricing.ts`
+- [ ] Legal templates: fill every [placeholder] in `content/pages/legal/*.mdx`, then set `template: false`
+- [ ] D8: self-contained Windows exe and move scanner off .NET 8 — the free-scan page says the download "will be" a single file
+
+## Next: VW-E4 Motion graphics (to confirm)
+
+- [ ] VW-018 Motion primitives (Reveal, Stagger, CountUp; reduced motion = final state)
+- [ ] VW-019 ScanBeam hero scene
+- [ ] VW-020 RiskRadar + CountUp proof
+- [ ] VW-021 CodeMorph FoxPro → C#
+- [ ] VW-022 Deadline timeline

@@ -42,7 +42,7 @@ Implement the current epic from docs/jira-tickets-json/:
 cd frontend && npm run lint && npm run typecheck && npm run test && npm run build
 
 ## Start
-Continue VW-E3 from docs/jira-tickets-json/VW-E3-core-pages.json (next task: VW-012)
+Continue VW-E4 from docs/jira-tickets-json/VW-E4-motion.json (next task: VW-018)
 ```
 
 *Kick-off Prompt — VFPScanner Web — Version 0.1.0*
