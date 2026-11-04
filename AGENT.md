@@ -41,7 +41,7 @@ Root index for the VFPScanner marketing and sales website. Engineering standards
 | Epic | Scope Summary | Status |
 |---|---|---|
 | **VW-E1** | Foundation — scaffold, docs, Next.js 16, tooling, CI, Vercel preview | ✅ Done (Vercel import by owner) |
-| **VW-E2** | Brand and design system | Planned |
+| **VW-E2** | Brand and design system | ✅ Done |
 | **VW-E3** | Core pages and content | Planned |
 | **VW-E4** | Motion graphics | Planned |
 | **VW-E5** | SEO / AIO / GEO | Planned |

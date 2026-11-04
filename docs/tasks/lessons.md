@@ -15,4 +15,7 @@ Carried over from TaskFlowAI where relevant:
 |---|---|---|---|
 | 2026-11-04 | shadcn CLI could not reach ui.shadcn.com from the cloud workspace | Registry host not on the network allowlist | Reuse TaskFlowAI's base-nova components or hand-write small ones; run `npx shadcn add` from the owner's PC when a big component is needed |
 | 2026-11-04 | `@axe-core/playwright` types clashed with `@playwright/test` | axe pulled a newer `playwright-core` than the pinned test runner | Keep `overrides.playwright-core` equal to the `@playwright/test` version; upgrade both together |
+| 2026-11-04 | Unit tests saw two mobile menus at once | React Testing Library auto-cleanup only runs with Vitest globals, which are off | Keep `afterEach(cleanup)` in `vitest.setup.ts` |
+| 2026-11-04 | Desktop nav squeezed at 768px tablets | `md` breakpoint is exactly 768px; logo + 5 links + CTA need ~900px | Primary nav shows from `lg`; keep the `tablet` Playwright project so breakpoint regressions fail CI |
+| 2026-11-04 | Risk badges failed AA in light theme | Tinted badge background lowers contrast of the same-hue text | Check semantic colours on their tinted backgrounds, not only on white; axe runs on `/styleguide` which shows every badge |
 | 2026-11-04 | Plan said "CSP report-only first" | Static prerendered pages cannot carry nonces, and report-only with no report endpoint gives no protection | Ship an enforced baseline CSP (`'unsafe-inline'` scripts, everything else `'self'`); revisit hashes/SRI later |

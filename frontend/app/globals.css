@@ -33,9 +33,9 @@
   --stage-muted: oklch(0.74 0.02 255);
   --stage-accent: oklch(0.8 0.13 185);
 
-  --risk-high: oklch(0.52 0.19 27);
-  --risk-medium: oklch(0.55 0.13 70);
-  --risk-low: oklch(0.5 0.1 165);
+  --risk-high: oklch(0.5 0.19 27);
+  --risk-medium: oklch(0.47 0.11 65);
+  --risk-low: oklch(0.44 0.09 165);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -134,6 +134,10 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  /* Lock page scroll while the mobile menu (modal <dialog>) is open */
+  html:has(dialog[open]:modal) {
+    overflow: hidden;
   }
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-ring;

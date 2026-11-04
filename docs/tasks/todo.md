@@ -41,9 +41,42 @@
 - Missing optional keys never break static pages; malformed values always fail
 - CSP ready for Cal.com/Turnstile/Plausible via `THIRD_PARTY_SOURCES`
 
-## Next: VW-E2 plan (to confirm)
+## VW-E2 — done 2026-11-04 (owner said "go with defaults")
 
-- [ ] VW-008 BRAND.md final (D1, D2)
-- [ ] VW-009 Final tokens + `/_style` page (noindex)
-- [ ] VW-010 Header, nav, footer, mobile menu
-- [ ] VW-011 Base sections: Hero, FeatureGrid, Steps, ProofStats, PricingTable, FAQ, CTA band, FactBlock
+**Branch:** `epic/VW-E2-brand-design`, started from `epic/VW-E1-foundation` (VW-E1 PR not merged yet; merge VW-E1 first, then VW-E2).
+**Decisions applied:** D1 = "VFP Migration Scanner", domain TBD · D2 = teal accent.
+
+- [x] VW-008 BRAND.md final; original SVG mark + wordmark; `app/icon.svg`
+- [x] VW-009 Token review (contrast AA both themes); `/styleguide` page — noindex, hidden on Vercel production
+- [x] VW-010 Skip link; sticky header (logo, nav with aria-current, "Get free scan" CTA); mobile menu with native `<dialog>` (Esc closes, focus returns to button, closes on link click); footer columns; custom 404 ("not published yet")
+- [x] VW-011 Sections (Server Components, content via props): Hero, FeatureGrid, Steps, ProofStats, PricingTable, FAQ (`<details>`, works without JS), CtaBand, FactBlock; `lib/pricing.ts` mirrors `docs/PRICING.md` (draft prices)
+- [x] Home placeholder rebuilt from the sections (real copy comes in VW-013)
+
+### Edge cases (from VW-E2 tickets)
+
+- 360px: no horizontal scroll; tablet 768px layout checked
+- Keyboard-only: skip link first, menu usable, visible focus
+- Contrast AA on every surface in both themes (axe on `/` and `/styleguide`)
+- Links to pages not built yet go to the custom 404 page, not a broken screen
+
+### Evidence
+
+- `npm run verify` ✅ — lint, typecheck, 32 unit tests (96.6% statements), static build (`/`, `/styleguide`, 404, icon)
+- `npm run test:e2e` ✅ — 36 passed, 3 skipped by design (desktop, tablet 768px, Pixel 7)
+- axe: 0 violations on `/`, `/styleguide`, 404 page — light + dark, 1280px + 390px
+- Screenshots reviewed: home desktop dark/light, tablet, mobile, open mobile menu, style guide
+
+### Changes found while testing
+
+- Full nav moved from `md` (768px) to `lg` (1024px): at 768px logo + 5 links + CTA did not fit; tablets now get the menu
+- Light-theme risk colours darkened (amber 3.96:1 and green 4.48:1 on badge backgrounds → pass 4.5:1)
+- Stage cards and CTA band got a faint ring: in dark mode they had the same colour as the page
+
+## Next: VW-E3 Core pages and content (to confirm)
+
+- [ ] VW-012 MDX content pipeline
+- [ ] VW-013 Home page (real copy)
+- [ ] VW-014 Scanner, Assessment, Migration, Retainer
+- [ ] VW-015 Pricing, FAQ, About, Contact
+- [ ] VW-016 Free-scan page
+- [ ] VW-017 Legal pages (templates for owner review)

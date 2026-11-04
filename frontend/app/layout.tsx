@@ -3,6 +3,8 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
 import { DevConfigBanner } from "@/components/dev-config-banner";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
 import { featureStatus, getEnv } from "@/lib/env";
 import { resolveSiteUrl, site } from "@/lib/site";
 
@@ -42,8 +44,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang={site.locale} className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
+        <a
+          href="#main"
+          className="sr-only z-50 rounded-md bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        >
+          Skip to content
+        </a>
         {showBanner ? <DevConfigBanner statuses={featureStatus(env)} /> : null}
+        <SiteHeader />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );

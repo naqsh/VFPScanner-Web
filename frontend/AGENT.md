@@ -26,12 +26,13 @@ Next.js 16 site deployed to **Vercel**: marketing pages, compliance pages, blog,
 | geist | 1.x | Geist Sans/Mono, self-hosted (no Google Fonts call at build) |
 | @base-ui/react | 1.x | shadcn base-nova primitives |
 
-## Planned Structure
+## Structure (✅ = exists)
 
 ```
 frontend/
 ├── app/
-│   ├── layout.tsx · globals.css · page.tsx
+│   ├── layout.tsx · globals.css · page.tsx · not-found.tsx · icon.svg   ✅
+│   ├── styleguide/          ✅ internal, noindex, 404 on Vercel production
 │   ├── scanner/ · assessment/ · migration/ · retainer/
 │   ├── compliance/germany-xrechnung-2027/ · compliance/us-irs-fire-to-iris/
 │   ├── pricing/ · sample-report/ · faq/ · about/ · contact/ · free-scan/
@@ -39,9 +40,15 @@ frontend/
 │   ├── api/ lead/ · checkout/ · payments/webhook/ · assistant/
 │   ├── sitemap.ts · robots.ts · manifest.ts · opengraph-image.tsx
 │   └── llms.txt/route.ts · llms-full.txt/route.ts
-├── components/ sections/ · motion/ · seo/ · assistant/ · ui/
+├── components/
+│   ├── brand/      ✅ Logo, LogoMark, ScanPanel
+│   ├── layout/     ✅ SiteHeader, NavLinks, MobileMenu (<dialog>), SiteFooter
+│   ├── sections/   ✅ Section, Hero, FeatureGrid, Steps, ProofStats, PricingTable, Faq, CtaBand, FactBlock
+│   ├── ui/         ✅ button, badge, card, input
+│   └── motion/ · seo/ · assistant/   (VW-E4, VW-E5, VW-E6)
 ├── content/            # MDX
-├── lib/ payments/ · supabase/ · seo/ · schema/ · analytics/ · pricing.ts
+├── lib/  ✅ env.ts · security-headers.ts · site.ts · navigation.ts · pricing.ts · home-content.ts · utils.ts
+│         later: payments/ · supabase/ · seo/ · schema/ · analytics/
 ├── hooks/ · public/ · __tests__/ · e2e/
 ```
 
@@ -55,6 +62,8 @@ frontend/
 | Accessibility | WCAG 2.2 AA — keyboard nav, ARIA labels, reduced motion |
 | SEO | Metadata + JSON-LD on every page (see `.cursor/rules/seo-geo.mdc`) |
 | Config errors | `lib/env.ts` validates env (Zod); dev banner lists unconfigured features |
+| Navigation | All links from `lib/navigation.ts`; unbuilt pages land on `app/not-found.tsx` |
+| Sections | Server Components, content via props; one `<h1>` per page (Hero); `Section` gives each block an `aria-labelledby` heading |
 | Theme | Follows system light/dark; `.bg-stage` surface always dark for scanner visuals; tokens in `app/globals.css` |
 
 ## Verification Gate

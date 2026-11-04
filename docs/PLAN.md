@@ -11,7 +11,7 @@ Progress tracker for all epics. Sync when JSON tickets or completion status chan
 | Epic | Summary | Branch | Tasks | Effort | Status |
 |---|---|---|---|---|---|
 | VW-E1 | Foundation — scaffold, Next.js 16, tooling, CI, Vercel | `epic/VW-E1-foundation` | VW-001..007 | S | ✅ 2026-11-04 (VW-006 Vercel import: owner) |
-| VW-E2 | Brand and design system | `epic/VW-E2-brand-design` | VW-008..011 | S | ⬜ |
+| VW-E2 | Brand and design system | `epic/VW-E2-brand-design` | VW-008..011 | S | ✅ 2026-11-04 (branch stacked on VW-E1) |
 | VW-E3 | Core pages and content | `epic/VW-E3-core-pages` | VW-012..017 | M | ⬜ |
 | VW-E4 | Motion graphics | `epic/VW-E4-motion` | VW-018..022 | M | ⬜ |
 | VW-E5 | SEO / AIO / GEO | `epic/VW-E5-seo-geo` | VW-023..029 | M | ⬜ |
@@ -39,4 +39,8 @@ VW-E4, VW-E5 and VW-E6 can run in parallel after VW-E3.
 | VW-005 | GitHub Actions CI | ✅ 2026-11-04 — verify + e2e jobs, Dependabot |
 | VW-006 | Vercel project + previews | 🟡 Guide written (`docs/guidance/vercel-setup.md`); import needs owner's Vercel login |
 | VW-007 | Env validation + security headers | ✅ 2026-11-04 — Zod env + feature readiness, dev banner, CSP/HSTS/etc. |
-| VW-008 | Finalise BRAND.md | ⬜ next (needs decisions D1, D2) |
+| VW-008 | Finalise BRAND.md | ✅ 2026-11-04 — defaults: "VFP Migration Scanner", teal; original logo + icon |
+| VW-009 | Final tokens + style guide | ✅ 2026-11-04 — `/styleguide` (noindex, 404 on Vercel prod), axe clean light/dark |
+| VW-010 | Layout shell | ✅ 2026-11-04 — skip link, sticky header, aria-current nav, `<dialog>` mobile menu, footer, custom 404 |
+| VW-011 | Base sections | ✅ 2026-11-04 — Section, Hero, FeatureGrid, Steps, ProofStats, PricingTable, Faq, CtaBand, FactBlock |
+| VW-012 | MDX content pipeline | ⬜ next (VW-E3) |
