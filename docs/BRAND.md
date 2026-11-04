@@ -29,7 +29,7 @@
 - Accent: one strong colour — **TODO(decide)** electric teal (default) or amber
 - Semantic: risk high = warm red, medium = amber, low = teal/green (never colour alone — add labels)
 - Type: clean sans for text (e.g. Inter / Geist), monospace for code and file names (e.g. JetBrains Mono / Geist Mono)
-- Light mode supported, dark is the hero look
+- Follows the visitor's system light/dark setting (accessibility). Dark is the hero look: the `stage` surface (scanner visuals) is dark in both themes
 
 ## Motion language
 

@@ -6,7 +6,7 @@
 
 Next.js 16 site deployed to **Vercel**: marketing pages, compliance pages, blog, pricing, forms, checkout, assistant UI, and route handlers under `app/api/`.
 
-> The Next.js app is created in VW-002. Until then this folder holds only this file.
+> Next.js 16.4 with Cache Components + Partial Prefetching on (default from create-next-app 16.4).
 > Next.js 16 has breaking changes — read `node_modules/next/dist/docs/` before using unfamiliar APIs.
 
 ## Technology Stack
@@ -21,7 +21,10 @@ Next.js 16 site deployed to **Vercel**: marketing pages, compliance pages, blog,
 | motion | latest | Motion graphics |
 | MDX | latest | Page and blog content |
 | React Hook Form + Zod | latest | Forms and validation |
-| Vitest / Playwright | latest | Tests |
+| Vitest | 5.x | Unit/component tests |
+| Playwright | 1.63 (pinned, see docs/guidance/local-setup.md) | E2E + axe |
+| geist | 1.x | Geist Sans/Mono, self-hosted (no Google Fonts call at build) |
+| @base-ui/react | 1.x | shadcn base-nova primitives |
 
 ## Planned Structure
 
@@ -51,12 +54,14 @@ frontend/
 | Type safety | Zod-validate all inputs and external responses |
 | Accessibility | WCAG 2.2 AA — keyboard nav, ARIA labels, reduced motion |
 | SEO | Metadata + JSON-LD on every page (see `.cursor/rules/seo-geo.mdc`) |
-| Config errors | Dev banner when required env vars are missing |
+| Config errors | `lib/env.ts` validates env (Zod); dev banner lists unconfigured features |
+| Theme | Follows system light/dark; `.bg-stage` surface always dark for scanner visuals; tokens in `app/globals.css` |
 
 ## Verification Gate
 
 ```bash
-npm run lint && npm run typecheck && npm run test && npm run build
+npm run verify            # lint + typecheck + test + build
+npm run test:e2e          # after build: Playwright desktop + mobile + axe
 ```
 
 ## Links

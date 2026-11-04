@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      next-react:
+        patterns: ["next", "react", "react-dom", "eslint-config-next", "@types/react*"]
+      testing:
+        patterns: ["vitest", "@vitest/*", "@testing-library/*", "jsdom", "@axe-core/*"]
+    ignore:
+      # Pinned together with the playwright-core override in frontend/package.json
+      - dependency-name: "@playwright/test"
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
