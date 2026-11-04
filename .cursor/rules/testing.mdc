@@ -1,0 +1,16 @@
+---
+description: Rules for the Testing Agent — Vitest, Playwright, Lighthouse, accessibility
+globs: ["frontend/__tests__/**", "frontend/e2e/**"]
+alwaysApply: false
+---
+
+# Testing Agent Rules — VFPScanner Web
+
+- Unit/component: Vitest + Testing Library, coverage > 75% on `lib/` and route handlers
+- E2E (Playwright): free-scan form, checkout start, webhook handling (mocked), assistant happy path + refusal, reduced-motion mode, 360px mobile
+- Accessibility: axe checks in Playwright on every page
+- Lighthouse CI budgets (from VW-E5): Performance ≥ 95, SEO 100, Accessibility ≥ 95, Best Practices ≥ 95
+- Structured data: validate JSON-LD output in tests
+- Implement every `EDGE CASES` item in the ticket as a test
+
+*Testing Agent Rules — VFPScanner Web v0.1.0*

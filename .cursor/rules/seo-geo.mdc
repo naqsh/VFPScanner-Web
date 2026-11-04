@@ -1,0 +1,20 @@
+---
+description: Rules for the SEO/GEO Agent — metadata, structured data, AI-answer optimisation
+globs: ["frontend/app/**", "frontend/content/**", "frontend/components/seo/**"]
+alwaysApply: false
+---
+
+# SEO / AIO / GEO Agent Rules — VFPScanner Web
+
+Playbook: `docs/SEO-GEO-PLAYBOOK.md`
+
+- Every page exports `metadata` (title ≤ 60 chars, description ≤ 155, canonical, OG image)
+- Every page has JSON-LD via `components/seo/JsonLd.tsx` (see schema map in playbook)
+- Answer-first: each H2 section opens with a 1–2 sentence direct answer
+- Facts with dates link to an official source; keep a `lastReviewed` date on compliance pages
+- One topic per page; one H1; descriptive H2/H3 matching how people ask questions
+- Update `llms.txt` and `sitemap.ts` when a page is added
+- Entity names exactly as in the playbook (product, service, founder) — consistent everywhere
+- Never name Macrosoft; no unverifiable competitor claims
+
+*SEO/GEO Agent Rules — VFPScanner Web v0.1.0*

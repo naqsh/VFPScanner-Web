@@ -1,0 +1,35 @@
+---
+description: Rules for the Coding Agent — Next.js 16, TypeScript, route handlers
+globs: ["frontend/**/*.ts", "frontend/**/*.tsx", "agents/**/*.ts"]
+alwaysApply: false
+---
+
+# Coding Agent Rules — VFPScanner Web
+
+## Frontend (Next.js 16 / React 19)
+
+- Next.js 16 has breaking changes — read `frontend/node_modules/next/dist/docs/` before using an API you are unsure of
+- App Router; Server Components by default; Client Components only for interactivity and motion
+- Static by default (`generateStaticParams`, no per-request data on marketing pages)
+- TypeScript strict; Zod for every form, route-handler input and external API response
+- Tailwind CSS 4 via `@theme` in `globals.css`; shadcn/ui primitives in `components/ui/`
+- Vercel deploy — do NOT set `output: 'standalone'`
+
+## Route handlers (`app/api/*`)
+
+- Thin handler → `lib/` service → provider (Supabase, payments, email, Claude)
+- Validate input with Zod, rate-limit, return typed JSON errors
+- Payment webhooks: verify signature, idempotent on event id
+
+## Content
+
+- Page copy lives in `frontend/content/*.mdx` — never hardcode long copy in components
+- Prices only from `lib/pricing.ts` (mirrors `docs/PRICING.md`)
+
+## Verification Gate
+
+```bash
+cd frontend && npm run lint && npm run typecheck && npm run test && npm run build
+```
+
+*Coding Agent Rules — VFPScanner Web v0.1.0*

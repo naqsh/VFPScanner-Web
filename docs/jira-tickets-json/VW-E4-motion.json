@@ -1,0 +1,52 @@
+{
+ "VW-E4": [
+  {
+   "Issue id": "VW-E4",
+   "Summary": "Motion graphics",
+   "Issue Type": "Epic",
+   "Description": "Motion graphics\n\nSCOPE:\n- ScanBeam hero scene\n- RiskRadar, CountUp, CodeMorph, DeadlineTimeline\n- Reveal-on-scroll primitives\n- Reduced-motion fallbacks\n\nEFFORT: M (20 hours)\nDEPENDENCIES: VW-E3\n\nEPIC LINK: epic/vfpscanner-web-implementation\nFEATURE BRANCH: epic/VW-E4-motion\n\nREFERENCE DOCS:\n- docs/BRAND.md (motion language)\n- .cursor/rules/design-motion.mdc\n\nSUCCESS CRITERIA:\n- Lighthouse performance stays ≥ 95\n- All scenes have static fallbacks",
+   "Labels": "motion,animation",
+   "Parent": ""
+  },
+  {
+   "Issue id": "VW-018",
+   "Summary": "Motion primitives",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- motion library; Reveal, Stagger, CountUp components (client)\n- useReducedMotion → render final state\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: None\n\nTESTING CRITERIA:\n- Playwright with reducedMotion: 'reduce' shows final state",
+   "Labels": "motion",
+   "Parent": "VW-E4"
+  },
+  {
+   "Issue id": "VW-019",
+   "Summary": "ScanBeam hero scene",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- SVG/CSS: FoxPro file names (PRG, SCX, VCX, DBF) pass a scan line, become risk map + .NET project tree\n- Starts after LCP text paints; pauses when off-screen\n\nEDGE CASES:\n- Low-end mobile: simplified version\n- Tab hidden: pause\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-018\n\nTESTING CRITERIA:\n- LCP element is hero text, not animation",
+   "Labels": "hero",
+   "Parent": "VW-E4"
+  },
+  {
+   "Issue id": "VW-020",
+   "Summary": "RiskRadar + CountUp proof section",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Radar of 13 risk categories filling in; count-up of 19–28% duplicate/old code (real data only)\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-018",
+   "Labels": "proof",
+   "Parent": "VW-E4"
+  },
+  {
+   "Issue id": "VW-021",
+   "Summary": "CodeMorph scene (FoxPro → C#)",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Side-by-side snippet morph, original sample code written by us\n- Accessible: both snippets readable as text\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-018",
+   "Labels": "code",
+   "Parent": "VW-E4"
+  },
+  {
+   "Issue id": "VW-022",
+   "Summary": "Deadline timeline",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- 2026 FIRE end, 2027 and 2028 e-invoicing; region toggle DE/US\n- Dates from facts register only\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-018",
+   "Labels": "timeline",
+   "Parent": "VW-E4"
+  }
+ ]
+}

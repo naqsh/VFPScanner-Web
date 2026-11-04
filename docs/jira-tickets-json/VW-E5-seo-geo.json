@@ -1,0 +1,68 @@
+{
+ "VW-E5": [
+  {
+   "Issue id": "VW-E5",
+   "Summary": "SEO / AIO / GEO",
+   "Issue Type": "Epic",
+   "Description": "SEO / AIO / GEO\n\nSCOPE:\n- Metadata + canonical + OG images\n- JSON-LD schema map\n- sitemap, robots (AI crawlers allowed), llms.txt, llms-full.txt\n- Two compliance pages + 3 blog posts\n- Lighthouse CI\n- Search Console + Bing\n\nEFFORT: M (24 hours)\nDEPENDENCIES: VW-E3\n\nEPIC LINK: epic/vfpscanner-web-implementation\nFEATURE BRANCH: epic/VW-E5-seo-geo\n\nREFERENCE DOCS:\n- docs/SEO-GEO-PLAYBOOK.md\n\nSUCCESS CRITERIA:\n- Rich results test passes on all page types\n- Lighthouse SEO 100\n- llms.txt lists all key pages",
+   "Labels": "seo,aio,geo",
+   "Parent": ""
+  },
+  {
+   "Issue id": "VW-023",
+   "Summary": "Metadata, canonical, OG images",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- generateMetadata per page; opengraph-image.tsx per section\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: None\n\nTESTING CRITERIA:\n- Unit test titles ≤ 60, descriptions ≤ 155",
+   "Labels": "metadata",
+   "Parent": "VW-E5"
+  },
+  {
+   "Issue id": "VW-024",
+   "Summary": "JSON-LD components and schema map",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- components/seo/JsonLd.tsx; builders in lib/schema/ for Organization, Person, WebSite, Service, Offer, SoftwareApplication, FAQPage, HowTo, Article, BreadcrumbList\n\nEDGE CASES:\n- Prices in Offer must equal lib/pricing.ts\n- No schema for content not visible on page\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: None\n\nTESTING CRITERIA:\n- Snapshot + schema validation tests",
+   "Labels": "schema",
+   "Parent": "VW-E5"
+  },
+  {
+   "Issue id": "VW-025",
+   "Summary": "sitemap, robots, llms.txt, llms-full.txt",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- robots allows AI crawlers listed in playbook\n- llms.txt: summary + key URLs; llms-full.txt: plain text of all MDX\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: None\n\nTESTING CRITERIA:\n- Routes return 200 with correct content-type",
+   "Labels": "crawlers",
+   "Parent": "VW-E5"
+  },
+  {
+   "Issue id": "VW-026",
+   "Summary": "Compliance page: Germany XRechnung 2027",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Answer-first; fact blocks with BMF links; what a FoxPro ERP must change; options (bridge vs migration); CTA free scan\n- lastReviewed date\n\nEDGE CASES:\n- Facts must be verified (facts register) before publish\n- No legal advice wording\n\nEFFORT: S (2 hours)\nPROJECT AREA: Content\nDEPENDENCIES: None",
+   "Labels": "compliance,de",
+   "Parent": "VW-E5"
+  },
+  {
+   "Issue id": "VW-027",
+   "Summary": "Compliance page: US IRS FIRE → IRIS",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Same structure; IRS.gov links; legacy 1099 export impact\n\nEDGE CASES:\n- Verify retirement date on IRS.gov before publish\n\nEFFORT: S (2 hours)\nPROJECT AREA: Content\nDEPENDENCIES: None",
+   "Labels": "compliance,us",
+   "Parent": "VW-E5"
+  },
+  {
+   "Issue id": "VW-028",
+   "Summary": "First 3 blog posts",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- e.g. 'Macro substitution: the #1 risk when migrating FoxPro', 'DBF to SQL Server data types', 'How big is my FoxPro app? Reading a PJX'\n- content-geo agent drafts → human edit\n\nEFFORT: S (2 hours)\nPROJECT AREA: Content\nDEPENDENCIES: None",
+   "Labels": "blog",
+   "Parent": "VW-E5"
+  },
+  {
+   "Issue id": "VW-029",
+   "Summary": "Lighthouse CI + Search Console/Bing",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- .github/workflows/lighthouse.yml with budgets\n- Verification meta / DNS for Search Console and Bing (at launch domain)\n\nEFFORT: S (2 hours)\nPROJECT AREA: Infrastructure\nDEPENDENCIES: None",
+   "Labels": "lighthouse",
+   "Parent": "VW-E5"
+  }
+ ]
+}

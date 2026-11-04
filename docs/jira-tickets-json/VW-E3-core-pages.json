@@ -1,0 +1,60 @@
+{
+ "VW-E3": [
+  {
+   "Issue id": "VW-E3",
+   "Summary": "Core pages and content",
+   "Issue Type": "Epic",
+   "Description": "Core pages and content\n\nSCOPE:\n- Home, Scanner, Assessment, Migration, Retainer, Pricing, FAQ, About, Contact, Free scan, Legal\n- MDX content pipeline\n- Copy reviewed against the business brief\n\nEFFORT: M (24 hours)\nDEPENDENCIES: VW-E2\n\nEPIC LINK: epic/vfpscanner-web-implementation\nFEATURE BRANCH: epic/VW-E3-core-pages\n\nREFERENCE DOCS:\n- docs/VFPScanner-Web_Proposal.md §6\n- docs/BRAND.md\n\nSUCCESS CRITERIA:\n- All pages live on preview with real copy\n- No invented proof; Macrosoft never mentioned",
+   "Labels": "pages,content",
+   "Parent": ""
+  },
+  {
+   "Issue id": "VW-012",
+   "Summary": "MDX content pipeline",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- @next/mdx or content-collections; frontmatter schema with Zod (title, description, updated, faq[])\n- content/ folder structure per page\n\nEDGE CASES:\n- Invalid frontmatter fails build with clear message\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: None\n\nTESTING CRITERIA:\n- Unit test for schema",
+   "Labels": "mdx",
+   "Parent": "VW-E3"
+  },
+  {
+   "Issue id": "VW-013",
+   "Summary": "Home page",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Sections: hero (deadline hook) → problem → how it works (3 steps) → what the scan finds → proof (real numbers) → pricing teaser → FAQ (6) → CTA\n\nEDGE CASES:\n- Reads well with motion off and JS off\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-012",
+   "Labels": "home",
+   "Parent": "VW-E3"
+  },
+  {
+   "Issue id": "VW-014",
+   "Summary": "Scanner, Assessment, Migration, Retainer pages",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Scanner: file types, 13 risk patterns, data profiling, runs locally, screenshots of v0.2 UI\n- Assessment: deliverables, timeline, S/M/L, buy button placeholder\n- Migration: approach VFP → .NET 8 + SQL Server, phases\n- Retainer: what's included\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-012",
+   "Labels": "services",
+   "Parent": "VW-E3"
+  },
+  {
+   "Issue id": "VW-015",
+   "Summary": "Pricing, FAQ, About, Contact pages",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Pricing from lib/pricing.ts\n- FAQ 20–30 answer-first entries\n- About: founder story, experience (no ex-employer names)\n- Contact: form placeholder (wired in VW-E6) + Cal.com placeholder\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-012",
+   "Labels": "pages",
+   "Parent": "VW-E3"
+  },
+  {
+   "Issue id": "VW-016",
+   "Summary": "Free-scan page (download + instructions)",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- What the scanner does, system needs (.NET 8 runtime or self-contained exe), how to run (UI and CLI), what to send back\n- Download link via form gate (wired VW-E6)\n\nEDGE CASES:\n- Windows SmartScreen warning explained\n- No .NET installed\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: None",
+   "Labels": "free-scan",
+   "Parent": "VW-E3"
+  },
+  {
+   "Issue id": "VW-017",
+   "Summary": "Legal pages",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Privacy (GDPR), Terms, Refund, Imprint (Impressum required for German audience) — templates marked for review\n\nEDGE CASES:\n- Content must be reviewed by the owner before launch\n\nEFFORT: S (2 hours)\nPROJECT AREA: Legal\nDEPENDENCIES: None",
+   "Labels": "legal",
+   "Parent": "VW-E3"
+  }
+ ]
+}

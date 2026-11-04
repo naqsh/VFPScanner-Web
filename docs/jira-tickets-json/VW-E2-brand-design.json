@@ -1,0 +1,44 @@
+{
+ "VW-E2": [
+  {
+   "Issue id": "VW-E2",
+   "Summary": "Brand and design system",
+   "Issue Type": "Epic",
+   "Description": "Brand and design system\n\nSCOPE:\n- Finalise name/colours/type\n- tokens\n- layout shell\n- base sections\n\nEFFORT: S (12 hours)\nDEPENDENCIES: VW-E1\n\nEPIC LINK: epic/vfpscanner-web-implementation\nFEATURE BRANCH: epic/VW-E2-brand-design\n\nREFERENCE DOCS:\n- docs/BRAND.md\n- .cursor/rules/design-motion.mdc\n\nSUCCESS CRITERIA:\n- docs/BRAND.md final\n- Header, footer, section components used on a style page\n- Contrast AA in both themes",
+   "Labels": "brand,design",
+   "Parent": ""
+  },
+  {
+   "Issue id": "VW-008",
+   "Summary": "Finalise BRAND.md (name, domain, accent, type)",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Record decisions from docs/tasks/todo.md open decisions\n- Logo: simple wordmark + mark (SVG), original\n\nEFFORT: S (2 hours)\nPROJECT AREA: Design\nDEPENDENCIES: None",
+   "Labels": "brand",
+   "Parent": "VW-E2"
+  },
+  {
+   "Issue id": "VW-009",
+   "Summary": "Design tokens final + style page",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Final @theme values\n- /_style page (noindex) showing tokens, type scale, components\n\nEDGE CASES:\n- Contrast AA for text on every surface in both themes\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-008\n\nTESTING CRITERIA:\n- axe passes on /_style",
+   "Labels": "tokens",
+   "Parent": "VW-E2"
+  },
+  {
+   "Issue id": "VW-010",
+   "Summary": "Layout shell: header, nav, footer, mobile menu",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Sticky header with primary CTA 'Get free scan'\n- Mobile menu accessible (focus trap, Esc closes)\n- Footer: services, compliance, legal, contact\n\nEDGE CASES:\n- 360px width, no horizontal scroll\n- Keyboard-only navigation\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-009\n\nTESTING CRITERIA:\n- Playwright mobile + keyboard test",
+   "Labels": "layout",
+   "Parent": "VW-E2"
+  },
+  {
+   "Issue id": "VW-011",
+   "Summary": "Base section components",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Hero, FeatureGrid, Steps, ProofStats, PricingTable, FAQ (accordion), CTA band, FactBlock (date + source)\n- All Server Components; content via props/MDX\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-009\n\nTESTING CRITERIA:\n- Component tests for each",
+   "Labels": "components",
+   "Parent": "VW-E2"
+  }
+ ]
+}

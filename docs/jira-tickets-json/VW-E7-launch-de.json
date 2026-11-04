@@ -1,0 +1,44 @@
+{
+ "VW-E7": [
+  {
+   "Issue id": "VW-E7",
+   "Summary": "Launch and German version",
+   "Issue Type": "Epic",
+   "Description": "Launch and German version\n\nSCOPE:\n- Accessibility and performance pass\n- Playwright full suite\n- Analytics\n- /de pages + hreflang + Impressum\n- Domain and production deploy\n\nEFFORT: M (24 hours)\nDEPENDENCIES: VW-E4, VW-E5, VW-E6\n\nEPIC LINK: epic/vfpscanner-web-implementation\nFEATURE BRANCH: epic/VW-E7-launch-de\n\nREFERENCE DOCS:\n- docs/SEO-GEO-PLAYBOOK.md\n- infrastructure/AGENT.md\n\nSUCCESS CRITERIA:\n- Live on domain with HTTPS\n- Lighthouse budgets met on production\n- German home, scanner, assessment, Germany compliance pages live",
+   "Labels": "launch,i18n,de",
+   "Parent": ""
+  },
+  {
+   "Issue id": "VW-037",
+   "Summary": "Accessibility + performance pass",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- axe on all pages; keyboard walk-through; image optimisation; bundle check\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: None\n\nTESTING CRITERIA:\n- 0 axe violations; Lighthouse budgets",
+   "Labels": "a11y,perf",
+   "Parent": "VW-E7"
+  },
+  {
+   "Issue id": "VW-038",
+   "Summary": "Analytics + conversion events",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Plausible (cookieless) events: free_scan_submit, checkout_start, purchase, booking, assistant_open\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: None",
+   "Labels": "analytics",
+   "Parent": "VW-E7"
+  },
+  {
+   "Issue id": "VW-039",
+   "Summary": "German version /de",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- next-intl or route groups; translate core + Germany compliance pages (human-reviewed)\n- hreflang en/de + x-default\n\nEDGE CASES:\n- Untranslated pages fall back to English with notice\n- Prices in EUR on /de\n\nEFFORT: S (2 hours)\nPROJECT AREA: Content\nDEPENDENCIES: None",
+   "Labels": "i18n",
+   "Parent": "VW-E7"
+  },
+  {
+   "Issue id": "VW-040",
+   "Summary": "Domain, production deploy, launch checklist",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Domain + DNS on Vercel; production branch\n- Search Console/Bing verify; submit sitemap\n- Final legal review; facts register all verified\n\nEFFORT: S (2 hours)\nPROJECT AREA: Infrastructure\nDEPENDENCIES: None",
+   "Labels": "launch",
+   "Parent": "VW-E7"
+  }
+ ]
+}

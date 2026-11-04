@@ -1,0 +1,68 @@
+{
+ "VW-E1": [
+  {
+   "Issue id": "VW-E1",
+   "Summary": "MVP 1: Foundation — scaffold, docs, Next.js 16, tooling, CI, Vercel preview",
+   "Issue Type": "Epic",
+   "Description": "MVP 1: Foundation — scaffold, docs, Next.js 16, tooling, CI, Vercel preview\n\nSCOPE:\n- TaskFlowAI-style repo scaffold and docs set\n- Next.js 16 app in frontend/ with Tailwind 4 + shadcn/ui\n- Lint, typecheck, Vitest, Playwright tooling\n- GitHub Actions CI\n- Vercel project with preview deploys\n- Env validation and security headers\n\nEFFORT: S (12 hours)\nDEPENDENCIES: None\n\nEPIC LINK: epic/vfpscanner-web-implementation\nFEATURE BRANCH: epic/VW-E1-foundation\n\nREFERENCE DOCS:\n- docs/VFPScanner-Web_Proposal.md\n- docs/EXECUTION-RULES.md\n- frontend/AGENT.md\n- infrastructure/AGENT.md\n\nSUCCESS CRITERIA:\n- npm run lint/typecheck/test/build all pass\n- Preview URL on Vercel shows placeholder home\n- CI green on PR",
+   "Labels": "foundation,scaffold,nextjs,ci",
+   "Parent": ""
+  },
+  {
+   "Issue id": "VW-001",
+   "Summary": "Repo scaffold, AGENT.md files and docs set",
+   "Issue Type": "Task",
+   "Description": "STATUS: DONE 2026-11-04 (scaffold only). Git init pending — run by user locally.\n\nUSE CASES:\n- Any agent session can start from AGENT.md and find every rule\n\nIMPLEMENTATION DETAILS:\n- Root AGENT.md, CLAUDE.md, README, SECURITY.md, .env.example, .gitignore\n- Co-located AGENT.md in frontend/, agents/*, supabase/, infrastructure/\n- .cursor/rules: coding, design-motion, seo-geo, testing, docs\n- docs: proposal, PLAN, EXECUTION-RULES, TOKEN-EFFICIENCY, KICKOFF-PROMPT, BRAND, SEO-GEO-PLAYBOOK, PRICING, ADR-001..003, tasks/*\n- jira-tickets-json VW-E1..VW-E7\n\nEFFORT: S (2 hours)\nPROJECT AREA: Docs\nDEPENDENCIES: None\n\nTESTING CRITERIA:\n- All files present; links in AGENT.md resolve",
+   "Labels": "scaffold,docs",
+   "Parent": "VW-E1"
+  },
+  {
+   "Issue id": "VW-002",
+   "Summary": "Initialise Next.js 16 app in frontend/",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- npx create-next-app@latest frontend — TypeScript, App Router, ESLint, Tailwind, src dir NO, import alias @/*\n- Keep existing frontend/AGENT.md; add frontend/CLAUDE.md -> @AGENTS.md as in TaskFlowAI\n- Read node_modules/next/dist/docs for Next 16 changes before editing config\n- Add scripts: typecheck (tsc --noEmit)\n- Placeholder home page with product name + 'coming soon'\n\nEDGE CASES:\n- create-next-app refuses non-empty folder: create in temp folder and move files, keeping AGENT.md\n- Windows path/line endings: add .gitattributes (* text=auto eol=lf)\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-001\n\nTESTING CRITERIA:\n- npm run dev serves http://localhost:3000\n- npm run build succeeds",
+   "Labels": "nextjs,setup",
+   "Parent": "VW-E1"
+  },
+  {
+   "Issue id": "VW-003",
+   "Summary": "Tailwind 4 theme tokens + shadcn/ui base",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- @theme tokens for colours, radius, spacing, fonts (placeholder values until VW-E2)\n- Dark + light tokens; dark default\n- npx shadcn init; add button, badge, card, dialog, input, accordion\n- next/font for sans + mono\n\nEDGE CASES:\n- System dark/light preference honoured; no flash of wrong theme\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-002\n\nTESTING CRITERIA:\n- Button renders in both themes\n- No CLS from font loading",
+   "Labels": "tailwind,shadcn",
+   "Parent": "VW-E1"
+  },
+  {
+   "Issue id": "VW-004",
+   "Summary": "Test tooling: Vitest, Testing Library, Playwright, axe",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- vitest.config.ts + setup; @testing-library/react\n- Playwright config with chromium + mobile (Pixel 7) projects\n- @axe-core/playwright helper\n- Example unit test + e2e smoke test\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-002\n\nTESTING CRITERIA:\n- npm run test passes\n- npx playwright test passes locally",
+   "Labels": "testing",
+   "Parent": "VW-E1"
+  },
+  {
+   "Issue id": "VW-005",
+   "Summary": "GitHub Actions CI",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- .github/workflows/ci.yml: node 22, npm ci, lint, typecheck, test, build, npm audit --audit-level=high\n- Playwright job with cached browsers\n- Dependabot for npm and actions\n\nEDGE CASES:\n- CI must not need real secrets — build works with empty env\n- Fork PRs: no secret access\n\nEFFORT: S (2 hours)\nPROJECT AREA: Infrastructure\nDEPENDENCIES: VW-004\n\nTESTING CRITERIA:\n- CI green on a test PR",
+   "Labels": "ci",
+   "Parent": "VW-E1"
+  },
+  {
+   "Issue id": "VW-006",
+   "Summary": "Vercel project + preview deploys",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Import repo in Vercel, root directory frontend/\n- Preview deploy per PR; production branch set later (VW-E7)\n- Env var names from .env.example added (empty where not yet known)\n\nEFFORT: S (2 hours)\nPROJECT AREA: Infrastructure\nDEPENDENCIES: VW-002\n\nTESTING CRITERIA:\n- Preview URL loads placeholder page",
+   "Labels": "vercel,deploy",
+   "Parent": "VW-E1"
+  },
+  {
+   "Issue id": "VW-007",
+   "Summary": "Env validation and security headers",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- lib/env.ts: Zod schema for server and public env; fail build only for vars needed by enabled features\n- Dev banner when required vars missing\n- next.config.ts headers: CSP (report-only first), HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy\n\nEDGE CASES:\n- Missing optional keys (payments, assistant) must not break static pages\n- CSP must allow Cal.com, Turnstile, Plausible when added\n\nEFFORT: S (2 hours)\nPROJECT AREA: Security\nDEPENDENCIES: VW-002\n\nTESTING CRITERIA:\n- Headers present on preview (curl -I)\n- Unit test for env schema",
+   "Labels": "security,config",
+   "Parent": "VW-E1"
+  }
+ ]
+}

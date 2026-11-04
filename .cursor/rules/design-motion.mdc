@@ -1,0 +1,19 @@
+---
+description: Rules for the Design & Motion Agent — tokens, layout, animation
+globs: ["frontend/components/**", "frontend/app/globals.css"]
+alwaysApply: false
+---
+
+# Design & Motion Agent Rules — VFPScanner Web
+
+- Source of truth: `docs/BRAND.md` (colours, type, spacing, voice)
+- Colours only via tokens in `@theme`; light and dark both defined
+- Motion library: `motion` (Framer Motion). Animate only `transform` and `opacity`
+- Every animation has a `prefers-reduced-motion` fallback (static final state)
+- Nothing animated may delay LCP — hero text renders first, scene animates after
+- Motion components live in `components/motion/` and are Client Components; sections stay Server Components and import them
+- No autoplay sound; no scroll-jacking; no parallax that moves text
+- Mobile first; 16px side gutter; no horizontal scroll at 360px
+- WCAG 2.2 AA contrast; visible focus rings
+
+*Design & Motion Agent Rules — VFPScanner Web v0.1.0*

@@ -1,0 +1,68 @@
+{
+ "VW-E6": [
+  {
+   "Issue id": "VW-E6",
+   "Summary": "Leads, payments and AI assistant",
+   "Issue Type": "Epic",
+   "Description": "Leads, payments and AI assistant\n\nSCOPE:\n- Supabase tables with RLS\n- Free-scan + contact forms with email\n- Checkout + webhook via payments interface\n- Cal.com booking\n- Grounded assistant\n- Readiness check + lead qualifier\n\nEFFORT: L (40 hours)\nDEPENDENCIES: VW-E3; ADR-002 provider confirmed\n\nEPIC LINK: epic/vfpscanner-web-implementation\nFEATURE BRANCH: epic/VW-E6-leads-payments-ai\n\nREFERENCE DOCS:\n- SECURITY.md\n- docs/PRICING.md\n- docs/adr/ADR-002-merchant-of-record.md\n- docs/adr/ADR-003-assistant-grounded-rag.md\n- agents/AGENT.md\n\nSUCCESS CRITERIA:\n- Lead lands in Supabase and email within 1 min\n- Test purchase completes and records order once\n- Assistant answers with citations and refuses off-scope",
+   "Labels": "leads,payments,ai",
+   "Parent": ""
+  },
+  {
+   "Issue id": "VW-030",
+   "Summary": "Supabase schema + RLS",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Migrations for leads, orders, bookings, assistant_logs (see supabase/AGENT.md)\n- RLS deny-all for anon; service role writes from server\n\nEDGE CASES:\n- Duplicate lead same email same day → update, not insert\n\nEFFORT: S (2 hours)\nPROJECT AREA: Data\nDEPENDENCIES: None",
+   "Labels": "supabase",
+   "Parent": "VW-E6"
+  },
+  {
+   "Issue id": "VW-031",
+   "Summary": "Free-scan + contact forms",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- RHF + Zod; server route /api/lead; Turnstile + honeypot + rate limit\n- Resend: confirmation to visitor with download link; notification to owner with lead score\n- GDPR consent checkbox stored with timestamp\n\nEDGE CASES:\n- Email provider down: lead still saved, retry later\n- Disposable email domains\n- Bot spam bursts\n- Double submit\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-030\n\nTESTING CRITERIA:\n- Unit tests for route; Playwright form flow (mocked email)",
+   "Labels": "forms",
+   "Parent": "VW-E6"
+  },
+  {
+   "Issue id": "VW-032",
+   "Summary": "Payments interface + checkout",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- lib/payments: createCheckout(tier, currency, email), verifyWebhook, parseEvent\n- Lemon Squeezy adapter (or chosen provider)\n- Buy buttons on Assessment/Pricing; Retainer subscription\n\nEDGE CASES:\n- Price/tier never trusted from client\n- Unsupported country\n- EU VAT ID reverse charge (provider handles)\n- User closes checkout\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-030",
+   "Labels": "payments",
+   "Parent": "VW-E6"
+  },
+  {
+   "Issue id": "VW-033",
+   "Summary": "Payment webhook",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- /api/payments/webhook: verify signature, idempotent on event id, store order, email owner + buyer next steps\n\nEDGE CASES:\n- Duplicate events\n- Out-of-order events (refund before order)\n- Invalid signature → 401, no DB write\n- Provider retries after timeout\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-032\n\nTESTING CRITERIA:\n- Unit tests with signed fixtures",
+   "Labels": "webhook",
+   "Parent": "VW-E6"
+  },
+  {
+   "Issue id": "VW-034",
+   "Summary": "Cal.com booking",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Embed on Contact/Migration; webhook → bookings table\n\nEDGE CASES:\n- Time zones DE/US/PK shown correctly\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: None",
+   "Labels": "booking",
+   "Parent": "VW-E6"
+  },
+  {
+   "Issue id": "VW-035",
+   "Summary": "Grounded assistant",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- Build-time content index from MDX\n- /api/assistant: retrieve → Claude with fixed system prompt → envelope with citations\n- Chat widget (client) with suggested questions; streaming optional\n\nEDGE CASES:\n- Prompt injection\n- No matching content\n- German question\n- Model timeout / budget cap hit\n- Input > 800 chars\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-030\n\nTESTING CRITERIA:\n- Refusal tests: legal advice, competitors, prices not in PRICING.md",
+   "Labels": "ai,assistant",
+   "Parent": "VW-E6"
+  },
+  {
+   "Issue id": "VW-036",
+   "Summary": "Readiness check + lead qualifier",
+   "Issue Type": "Task",
+   "Description": "IMPLEMENTATION DETAILS:\n- 6–8 question form → rules-based risk level + next step\n- Lead qualifier agent scores and summarises for owner email\n\nEDGE CASES:\n- Partial answers\n- Score never shown as a promise\n\nEFFORT: S (2 hours)\nPROJECT AREA: Frontend\nDEPENDENCIES: VW-031",
+   "Labels": "ai,leads",
+   "Parent": "VW-E6"
+  }
+ ]
+}
