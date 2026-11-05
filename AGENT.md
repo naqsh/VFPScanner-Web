@@ -71,6 +71,7 @@ Root index for the VFPScanner marketing and sales website. Engineering standards
 | Site AI agents | agents/AGENT.md |
 | Database (leads, orders) | supabase/AGENT.md |
 | Local setup / Vercel | docs/guidance/local-setup.md, docs/guidance/vercel-setup.md |
+| GitHub Project board | docs/guidance/github-project.md (`scripts/github-project/sync-project.mjs`, status in `docs/github/project-status.json`) |
 | CI/CD & Vercel | infrastructure/AGENT.md |
 
 ---

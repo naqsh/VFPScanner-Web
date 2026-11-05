@@ -8,7 +8,7 @@ alwaysApply: false
 
 - Update co-located `AGENT.md` when folder conventions change
 - Sync `docs/PLAN.md` when JSON tickets or epic status change
-- Update `docs/tasks/todo.md` when a task completes
+- Update `docs/tasks/todo.md` when a task completes, and set its status in `docs/github/project-status.json` (board sync: `docs/guidance/github-project.md`)
 - Capture learnings in `docs/tasks/lessons.md` and `docs/learning/`
 - New agent folder → create its `AGENT.md`
 - Price change → update `docs/PRICING.md` and `frontend/lib/pricing.ts` together
