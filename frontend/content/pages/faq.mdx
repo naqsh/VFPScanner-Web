@@ -1,0 +1,150 @@
+export const meta = {
+  title: "FAQ: Visual FoxPro migration and the free scan",
+  description:
+    "Answers about the free FoxPro scanner, the fixed-price migration assessment, moving to .NET and SQL Server, and the e-invoicing and IRS IRIS deadlines.",
+  updated: "2026-11-04",
+  faq: [
+    {
+      group: "The scanner",
+      featured: true,
+      question: "Does my source code leave my PC?",
+      answer:
+        "No. The scanner runs on your own machine, opens files read-only and sends nothing over the network. The report contains counts and names, never the values stored in your tables. You decide whether to share the report with anyone.",
+    },
+    {
+      group: "The scanner",
+      featured: true,
+      question: "Which FoxPro files does the scanner read?",
+      answer:
+        "Projects (.pjx), programs (.prg, .qpr, .mpr), forms (.scx), class libraries (.vcx), reports and labels (.frx, .lbx), menus (.mnx), databases (.dbc) and tables (.dbf), with its own reader. Compiled files (.app, .exe, .fxp) are listed so you can confirm the source code still exists. FoxPro 2.x screens are detected and flagged.",
+    },
+    {
+      group: "The scanner",
+      featured: true,
+      question: "What does the free scan tell me?",
+      answer:
+        "How big the application really is, which modules carry the most migration risk, where each of 13 risk patterns appears, what is in your tables with proposed SQL Server types, which code you may not need to migrate (duplicates, old copies, files outside any project), and whether invoice, VAT, 1099, payroll or EDI data is involved.",
+    },
+    {
+      group: "The scanner",
+      question: "Does the scanner change any files?",
+      answer: "No. Every source file and table is opened read-only. The only files it writes are the two report files in the output folder you choose.",
+    },
+    {
+      group: "The scanner",
+      question: "What do I need to run it?",
+      answer:
+        "A PC with access to the application folder. The scanner runs on Windows, Linux and macOS. You can use the browser interface (it opens on your own machine at 127.0.0.1) or the command line. To build it from source you need the .NET SDK.",
+    },
+    {
+      group: "The scanner",
+      question: "Is the risk rating an effort estimate?",
+      answer:
+        "No. Each module gets a weighted score: High at 12 or more points, Medium at 4 or more. The rating ranks modules so you know where to look first. Effort ranges come from the paid assessment, where a person reviews the findings.",
+    },
+    {
+      group: "The scanner",
+      question: "What can the scanner not do yet?",
+      answer:
+        "Some abbreviated commands (such as REPL for REPLACE) are not all matched, [...] string literals are not stripped, report expressions are counted but not analysed as code, and it does not extract business rules yet. Business-rule summaries are planned as an opt-in part of the paid assessment.",
+    },
+    {
+      group: "Migration Assessment",
+      featured: true,
+      question: "What is the Migration Assessment?",
+      answer:
+        "A fixed-price review that turns your scan into a migration plan: which modules carry the risk, what the data migration involves, what you can leave behind, what the compliance deadlines mean for you, and a phased plan with effort ranges. It takes 5 to 10 working days.",
+    },
+    {
+      group: "Migration Assessment",
+      question: "What do you need from us for the assessment?",
+      answer:
+        "The scan output, a call with someone who knows how the application is used, and, if you agree, read access to the source code. Nothing is changed in your systems.",
+    },
+    {
+      group: "Migration Assessment",
+      question: "What do we receive at the end?",
+      answer:
+        "A written report with module-by-module risk, a list of the patterns that need redesign, a data migration map from DBF to SQL Server, a clean-up list of code you may not need, the compliance impact, and a phased plan with effort ranges and options. We walk through it with you on a call.",
+    },
+    {
+      group: "Migration Assessment",
+      question: "Is the assessment fee credited if we go ahead?",
+      answer: "Yes. If you go ahead with a migration project, the assessment fee is credited against it.",
+    },
+    {
+      group: "Migration",
+      question: "What do you migrate FoxPro applications to?",
+      answer:
+        "C# on the current long-term-support release of .NET, with SQL Server for the data. The user interface can stay on the desktop or move to the web, depending on how the application is used.",
+    },
+    {
+      group: "Migration",
+      question: "Can we keep using the FoxPro application during the migration?",
+      answer:
+        "Yes. The usual order is data first, then modules one at a time. Old and new run side by side, and each module is switched over only after its results match.",
+    },
+    {
+      group: "Migration",
+      question: "Do you use automatic code converters?",
+      answer:
+        "Converters handle simple code but miss logic built at run time, such as macro substitution, EVALUATE and forms built in code. The scan finds those places first, so they are redesigned on purpose instead of breaking later.",
+    },
+    {
+      group: "Migration",
+      question: "How long does a migration take?",
+      answer:
+        "It depends on the size and risk of the application, which is exactly what the assessment measures. You get effort ranges per phase before you commit to anything.",
+    },
+    {
+      group: "Compliance deadlines",
+      featured: true,
+      question: "Does Germany's e-invoicing rule affect our FoxPro ERP?",
+      answer:
+        "If you sell to German businesses, very likely. Since 1 January 2025 businesses must be able to receive structured e-invoices. From 1 January 2027 businesses with more than €800,000 turnover in 2026 must issue them, and from 1 January 2028 all businesses must. A FoxPro system that prints or emails PDF invoices needs to produce XRechnung or ZUGFeRD instead. This is not legal or tax advice; confirm your obligations with your tax adviser.",
+    },
+    {
+      group: "Compliance deadlines",
+      featured: true,
+      question: "What changes for 1099 filing in the US?",
+      answer:
+        "The last day to file information returns through the IRS FIRE system is 19 November 2026 at 3 p.m. ET. From January 2027, IRIS is the only IRS system for e-filing them. A FoxPro system that writes FIRE-format files needs a new output for IRIS or a filing service.",
+    },
+    {
+      group: "Compliance deadlines",
+      question: "Is there a quick fix instead of a full migration?",
+      answer:
+        "Sometimes. A bridge that produces e-invoices or IRIS files from the existing system can buy time. The assessment shows whether a bridge, a migration, or a bridge first and migration later makes sense for you.",
+    },
+    {
+      group: "Compliance deadlines",
+      question: "Is this legal or tax advice?",
+      answer:
+        "No. We explain what the rules mean technically for your application and link to official sources. Please confirm your obligations with your tax adviser.",
+    },
+    {
+      group: "Pricing and working together",
+      question: "How much does it cost?",
+      answer:
+        "The scan is free. The Migration Assessment has a fixed price by application size. A migration is quoted after the assessment, and the retainer is a monthly fee. Current prices are on the pricing page.",
+    },
+    {
+      group: "Pricing and working together",
+      question: "Do prices include VAT?",
+      answer: "Prices are shown without VAT. VAT is added where it applies, based on your country and VAT ID.",
+    },
+    {
+      group: "Pricing and working together",
+      question: "Who will we work with?",
+      answer:
+        "Kashif, a senior .NET engineer with more than 15 years in fintech, banking, ERP, legal tech and shipping software, who specialises in Visual FoxPro to .NET migrations. You work with him directly.",
+    },
+    {
+      group: "Pricing and working together",
+      question: "Can you work under our NDA?",
+      answer: "Yes. Send it with your first message and it can be signed before you share anything.",
+    },
+  ],
+};
+
+Can't find your question? Use the [contact page](/contact) and you get an answer from the engineer who would do the work.

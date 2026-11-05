@@ -40,9 +40,9 @@ Root index for the VFPScanner marketing and sales website. Engineering standards
 
 | Epic | Scope Summary | Status |
 |---|---|---|
-| **VW-E1** | Foundation — scaffold, docs, Next.js 16, tooling, CI, Vercel preview | 🟡 Scaffold done, app init pending |
-| **VW-E2** | Brand and design system | Planned |
-| **VW-E3** | Core pages and content | Planned |
+| **VW-E1** | Foundation — scaffold, docs, Next.js 16, tooling, CI, Vercel preview | ✅ Done (Vercel import by owner) |
+| **VW-E2** | Brand and design system | ✅ Done |
+| **VW-E3** | Core pages and content | ✅ Done (legal texts need owner review) |
 | **VW-E4** | Motion graphics | Planned |
 | **VW-E5** | SEO / AIO / GEO | Planned |
 | **VW-E6** | Leads, payments and AI assistant | Planned |
@@ -70,6 +70,8 @@ Root index for the VFPScanner marketing and sales website. Engineering standards
 | Frontend rules | frontend/AGENT.md |
 | Site AI agents | agents/AGENT.md |
 | Database (leads, orders) | supabase/AGENT.md |
+| Local setup / Vercel | docs/guidance/local-setup.md, docs/guidance/vercel-setup.md |
+| GitHub Project board | docs/guidance/github-project.md (`scripts/github-project/sync-project.mjs`, status in `docs/github/project-status.json`) |
 | CI/CD & Vercel | infrastructure/AGENT.md |
 
 ---

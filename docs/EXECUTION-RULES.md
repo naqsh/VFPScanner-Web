@@ -65,7 +65,7 @@ Source of truth for execution standards. Applies to all development agents on th
 | Trigger | Action |
 |---|---|
 | JSON ticket changed | Update `docs/PLAN.md` |
-| Task completed | Update `docs/tasks/todo.md` |
+| Task completed | Update `docs/tasks/todo.md` and `docs/github/project-status.json`, then run `node scripts/github-project/sync-project.mjs` |
 | User correction | Update `docs/tasks/lessons.md` |
 | New agent folder | Create co-located `AGENT.md` |
 | Price changed | Update `docs/PRICING.md` + `frontend/lib/pricing.ts` |

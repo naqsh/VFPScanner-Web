@@ -1,0 +1,65 @@
+{
+  "$comment": "Board status per ticket for scripts/github-project/sync-project.mjs. Values: Todo | In Progress | Done. Unlisted tickets are Todo. Update this file when a task finishes, then re-run the script.",
+  "project": {
+    "owner": "naqsh",
+    "repo": "VFPScanner-Web",
+    "title": "VFPScanner Web"
+  },
+  "epicNames": {
+    "VW-E1": "Foundation",
+    "VW-E2": "Brand and design system",
+    "VW-E3": "Core pages and content",
+    "VW-E4": "Motion graphics",
+    "VW-E5": "SEO / AIO / GEO",
+    "VW-E6": "Leads, payments and AI",
+    "VW-E7": "Launch and German"
+  },
+  "status": {
+    "VW-E1": "In Progress",
+    "VW-001": "Done",
+    "VW-002": "Done",
+    "VW-003": "Done",
+    "VW-004": "Done",
+    "VW-005": "Done",
+    "VW-006": "Todo",
+    "VW-007": "Done",
+    "VW-E2": "Done",
+    "VW-008": "Done",
+    "VW-009": "Done",
+    "VW-010": "Done",
+    "VW-011": "Done",
+    "VW-E3": "Done",
+    "VW-012": "Done",
+    "VW-013": "Done",
+    "VW-014": "Done",
+    "VW-015": "Done",
+    "VW-016": "Done",
+    "VW-017": "Done"
+  },
+  "ownerIssues": [
+    {
+      "id": "OWNER-1",
+      "title": "Merge epic PRs in order: VW-E1 → VW-E2 → VW-E3",
+      "status": "Todo",
+      "body": "Open pull requests from `epic/VW-E1-foundation`, then `epic/VW-E2-brand-design`, then `epic/VW-E3-core-pages` into `epic/vfpscanner-web-implementation`. Each branch is stacked on the previous one. Wait for CI to pass, then merge with **Create a merge commit** (not squash), as in `docs/EXECUTION-RULES.md` §8."
+    },
+    {
+      "id": "OWNER-2",
+      "title": "Review defaults and placeholders before launch",
+      "status": "Todo",
+      "body": "Written as defaults in VW-E3 and listed in `docs/tasks/todo.md` (\"Owner review before launch\"):\n\n- [ ] Assessment process: kick-off call ~45 min, questions in writing, you keep the report (`frontend/content/pages/assessment.mdx`)\n- [ ] \"We can work under your NDA\" (assessment, FAQ, contact)\n- [ ] Retainer contents (`retainer.mdx`)\n- [ ] About page wording (`about.mdx`)\n- [ ] Draft prices (D3): `docs/PRICING.md` + `frontend/lib/pricing.ts`\n- [ ] Legal templates: fill every [placeholder] in `frontend/content/pages/legal/*.mdx`, then set `template: false`"
+    },
+    {
+      "id": "OWNER-3",
+      "title": "Scanner: move to .NET 10 and publish a self-contained Windows exe (D8)",
+      "status": "Todo",
+      "body": ".NET 8 reaches end of support on 10 November 2026. Retarget `VfpScanner.csproj` to `net10.0` and publish `vfpscan.exe` as a single self-contained file, so users need nothing installed. The free-scan page says the download \"will be\" a single file; this must be true before VW-031 opens the download."
+    },
+    {
+      "id": "OWNER-4",
+      "title": "Decisions: domain (D1), prices (D3), payment provider (D4), contact email (D7), location on About (D9)",
+      "status": "Todo",
+      "body": "Open decisions from `docs/tasks/todo.md`:\n\n- [ ] D1 Domain\n- [ ] D3 Final prices (Assessment S/M/L, retainer)\n- [ ] D4 Payment provider — confirm Lemon Squeezy accepts a fixed-price consulting service (`docs/adr/ADR-002-merchant-of-record.md`)\n- [ ] D7 Public contact email\n- [ ] D9 Show location on About? (Imprint needs a postal address anyway)"
+    }
+  ]
+}

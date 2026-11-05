@@ -52,9 +52,12 @@
 
 | Fact | Source | Status |
 |---|---|---|
-| Germany: B2B e-invoice issuing mandatory from 1 Jan 2027 for prior-year turnover > €800,000; from 1 Jan 2028 for all | BMF (Bundesfinanzministerium) | TODO(verify + link) |
-| Germany: receiving e-invoices mandatory since 1 Jan 2025 | BMF | TODO(verify + link) |
-| US: IRS FIRE system retired end of December 2026; information returns move to IRIS | IRS.gov | TODO(verify + link) |
+| Germany: B2B e-invoice issuing mandatory from 1 Jan 2027 for 2026 turnover > €800,000; from 1 Jan 2028 for all | [IHK Stuttgart](https://www.ihk.de/stuttgart/fuer-unternehmen/recht-und-steuern/steuerrecht/steuermeldungen/e-rechnungen-5864496) (15.10.2026), based on BMF; BMF letter 15.10.2026 adds clarifications only ([IHK Hannover](https://www.ihk.de/hannover/hauptnavigation/recht/aktuell3/e-rechnung-bmf-veroeffentlicht-weitere-klarstellungen-7211944)) | ✅ verified 2026-11-04 |
+| Germany: receiving e-invoices mandatory since 1 Jan 2025 | IHK Stuttgart (as above) | ✅ verified 2026-11-04 |
+| US: last day to file through FIRE 19 Nov 2026, 3 p.m. ET; from Jan 2027 IRIS is the only e-filing system for information returns | [IRS QuickAlerts, September 2026](https://www.irs.gov/pub/irs-efile/quickalerts-september-2026.pdf) | ✅ verified 2026-11-04 (earlier "end of December" was wrong) |
+| .NET 8 end of support 10 Nov 2026 (migration target = .NET 10 LTS) | [.NET Blog](https://devblogs.microsoft.com/dotnet/dotnet-8-9-end-of-support/) | ✅ verified 2026-11-04 |
+
+Code copy of this register: `frontend/content/data/facts.ts` (unit test fails if any fact is unverified).
 
 ## 6. Technical SEO checklist
 

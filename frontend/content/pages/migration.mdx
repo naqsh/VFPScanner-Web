@@ -1,0 +1,25 @@
+export const meta = {
+  title: "Visual FoxPro to .NET and SQL Server migration",
+  description:
+    "How a FoxPro application moves to C# on current .NET and SQL Server: data first, module by module, with old and new running side by side until results match.",
+  updated: "2026-11-04",
+};
+
+## Target stack
+
+- **C# on the current long-term-support release of .NET.** .NET 8 reaches end of support on 10 November 2026, so new work targets .NET 10.
+- **SQL Server** for the data, with types mapped field by field from your DBF tables.
+- **Desktop or web**, depending on how the application is used. Many line-of-business tools stay on the desktop; screens used by many people often move to the web.
+- **New reports** for FRX reports, using SQL Server Reporting Services or a PDF library, whichever fits.
+
+## Phases
+
+1. **Assessment.** Size, risk, data map and plan. See the [Migration Assessment](/assessment).
+2. **Data first.** Tables move to SQL Server. Data issues found by the scan are fixed on the way. Where it helps, the FoxPro application reads the new database for a while, so users notice little.
+3. **Module by module.** Each module is rebuilt in .NET. The places the scan flagged (code built at run time, Windows API calls, COM components, global state) are redesigned on purpose.
+4. **Side by side.** Old and new run in parallel. A module switches over only when its results match the FoxPro version.
+5. **Retire FoxPro.** When the last module has switched, the FoxPro application is archived, not deleted, in case anyone needs to look back.
+
+## If a deadline comes first
+
+If an e-invoicing or IRIS deadline is closer than the end of a migration, a **bridge** can produce the required files from the existing system first. The assessment shows whether a bridge, a migration, or both makes sense.

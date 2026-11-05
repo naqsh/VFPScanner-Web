@@ -1,0 +1,43 @@
+export const meta = {
+  title: "Free scan: see what your FoxPro app contains",
+  description:
+    "Run the free, read-only VFP Migration Scanner on your PC. It reports size, risk, data and compliance signals, and your code never leaves your machine.",
+  updated: "2026-11-04",
+};
+
+## Run it
+
+### With the browser interface
+
+1. Start `vfpscan.exe` (double-click works).
+2. Your browser opens at `http://127.0.0.1:5077`. This page runs on your own PC only.
+3. Enter the path of your application folder, or upload a `.zip` of it.
+4. When the scan finishes, open the report or download the JSON file.
+
+Scans are saved on your PC and listed under **Recent scans**.
+
+### From the command line
+
+```
+vfpscan <application folder> --out <report folder> --name "App name" --contact you@company.com
+```
+
+The report folder then holds `vfp-scan.html` (the one-page report) and `vfp-scan.json` (the full detail).
+
+## What to share
+
+Nothing, unless you want to. If you would like a second opinion or a [Migration Assessment](/assessment), send the HTML report. It contains counts and names, never values from your tables.
+
+## Common questions
+
+### Windows shows "Windows protected your PC"
+
+Windows SmartScreen shows this for new programs that have not been downloaded many times yet. Click **More info**, check that the file name is `vfpscan.exe` and that you downloaded it from this site, then **Run anyway**. If your policy does not allow that, build the scanner from source instead.
+
+### We don't have .NET installed
+
+The Windows download will be a single self-contained file, so nothing has to be installed. To build from source on Windows, Linux or macOS, install the .NET SDK first.
+
+### Our application is on a server or network share
+
+Run the scanner on any PC that can read the folder. It only reads files, so a read-only share is fine.
