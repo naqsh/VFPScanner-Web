@@ -9,7 +9,7 @@ Root index for the VFPScanner marketing and sales website. Engineering standards
 **Version:** 0.1.0 | November 2026
 
 > **Spec:** [docs/VFPScanner-Web_Proposal.md](docs/VFPScanner-Web_Proposal.md) v0.1
-> **Integration branch:** `epic/vfpscanner-web-implementation`
+> **Integration branch:** `main` (since 2026-11-05; `epic/vfpscanner-web-implementation` is retired)
 
 ---
 
@@ -86,7 +86,7 @@ Root index for the VFPScanner marketing and sales website. Engineering standards
 | **Testing Agent** | Vitest, Playwright, Lighthouse, a11y | `.cursor/rules/testing.mdc` | 4th |
 | **Documentation Agent** | AGENT.md, PLAN.md, lessons sync | `.cursor/rules/docs.mdc` | 5th |
 
-Epic workflow: branch from `epic/vfpscanner-web-implementation` → implement → design/motion → SEO/GEO → test → docs → PR → merge commit.
+Epic workflow: branch from `main` → implement → design/motion → SEO/GEO → test → docs → PR → merge commit.
 
 ## Site AI Agents (runtime)
 

@@ -78,7 +78,7 @@ At ~75% context, write `docs/tasks/checkpoint.md` (epic, branch, current task, f
 
 | Branch | Purpose |
 |---|---|
-| `epic/vfpscanner-web-implementation` | Long-lived integration branch |
+| `main` | Integration branch (owner decision 2026-11-05) |
 | `epic/VW-E{n}-{name}` | Per-epic work branch |
 
 Merge epics with **merge commit**. Delete local epic branch after merge; keep remote.

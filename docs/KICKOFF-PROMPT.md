@@ -32,7 +32,7 @@ You are implementing VFPScanner Web from the scaffolded repo.
 
 ## Mission
 Implement the current epic from docs/jira-tickets-json/:
-1. Branch from epic/vfpscanner-web-implementation
+1. Branch from main
 2. Read epic JSON — implement IMPLEMENTATION DETAILS and all EDGE CASES
 3. Write plan to docs/tasks/todo.md and check in before coding
 4. Frontend verification gate before marking tasks done
@@ -42,7 +42,7 @@ Implement the current epic from docs/jira-tickets-json/:
 cd frontend && npm run lint && npm run typecheck && npm run test && npm run build
 
 ## Start
-Continue VW-E4 from docs/jira-tickets-json/VW-E4-motion.json (next task: VW-018)
+Continue VW-E5 from docs/jira-tickets-json/VW-E5-seo-geo.json (next task: VW-023). Order agreed 2026-11-05: VW-E5 → VW-E6 part 1 (leads) → Vercel live → VW-E4
 ```
 
 *Kick-off Prompt — VFPScanner Web — Version 0.1.0*

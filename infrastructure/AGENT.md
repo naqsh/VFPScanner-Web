@@ -10,7 +10,7 @@ CI/CD and Vercel deployment.
 
 | Branch | Purpose |
 |---|---|
-| `epic/vfpscanner-web-implementation` | Long-lived integration branch |
+| `main` | Integration branch (owner decision 2026-11-05) |
 | `epic/VW-E{n}-{name}` | Per-epic work branch |
 
 Merge with **merge commit** after CI passes. Delete local epic branch; keep remote.
@@ -25,6 +25,6 @@ Merge with **merge commit** after CI passes. Delete local epic branch; keep remo
 ## Vercel
 
 - Project root: `frontend/`
-- Preview deploy per PR; production from `main` after VW-E7
+- Preview deploy per PR; `main` is the Vercel production branch, but the public domain is only attached in VW-E7
 - Env vars set in Vercel, mirrored by names in `.env.example`
 - `vercel.json` only if headers/redirects cannot live in `next.config.ts`

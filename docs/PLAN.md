@@ -4,7 +4,9 @@
 
 Progress tracker for all epics. Sync when JSON tickets or completion status change.
 
-**Integration branch:** `epic/vfpscanner-web-implementation`
+**Integration branch:** `main` (VW-E1..E3 + board script merged via PR #1, 2026-11-05)
+
+**Order (owner, 2026-11-05):** VW-E5 SEO/GEO → VW-E6 part 1 (lead forms) → Vercel live → VW-E4 motion → VW-E6 part 2 → VW-E7
 
 ## Epic Checklist
 

@@ -128,10 +128,39 @@
 - [ ] Legal templates: fill every [placeholder] in `content/pages/legal/*.mdx`, then set `template: false`
 - [ ] D8: self-contained Windows exe and move scanner off .NET 8 — the free-scan page says the download "will be" a single file
 
-## Next: VW-E4 Motion graphics (to confirm)
+## Integration branch
 
-- [ ] VW-018 Motion primitives (Reveal, Stagger, CountUp; reduced motion = final state)
-- [ ] VW-019 ScanBeam hero scene
-- [ ] VW-020 RiskRadar + CountUp proof
-- [ ] VW-021 CodeMorph FoxPro → C#
-- [ ] VW-022 Deadline timeline
+`main` from 2026-11-05 (owner). PR #1 merged VW-E1..E3 and the board script into `main`. Owner fast-forwards the old branch once: `git push origin main:epic/vfpscanner-web-implementation`.
+
+## VW-E5 — in progress (owner: "yes" to the new order, 2026-11-05)
+
+**Branch:** `epic/VW-E5-seo-geo` from `main`. Order after this: VW-E6 part 1 (leads) → Vercel live → VW-E4.
+
+### Facts checked for the compliance pages (2026-11-05)
+
+| Fact | Source |
+|---|---|
+| DE: e-invoice = structured format (XRechnung, ZUGFeRD from 2.0.1, EN 16931 formats); PDF by email is an "other invoice" | IHK Stuttgart (15.10.2026), § 14 UStG |
+| DE: exceptions — small invoices up to €250 (§ 33 UStDV), tickets (§ 34 UStDV), B2C, certain tax-exempt supplies | IHK Stuttgart |
+| DE: until 31.12.2026 paper always allowed, other e-formats with recipient consent; in 2027 EDI with consent; receiving has no transition | IHK Stuttgart |
+| US: IRIS Taxpayer Portal (manual or CSV, up to 100 records per upload) and A2A (XML; schemas for Software Developer TCC); a FIRE TCC cannot be used for IRIS; apply at irs.gov/iristcc | IRS Pub 5719 (PY 2027) |
+| Scanner type mapping, data issues, PJX type codes | `VFPScanner-v0.2/Scanner.cs` (SqlType, table issues, ProjectTypeLabel) |
+
+### Plan
+
+- [ ] VW-023 Metadata: titles ≤ 60, descriptions ≤ 155 (schema tightened), canonical, Twitter card, generated OG images per page (Geist fonts), verification meta from env
+- [ ] VW-024 JSON-LD: `components/seo/JsonLd.tsx` (escaped), builders in `lib/schema/`; Organization + WebSite site-wide; breadcrumbs on inner pages; SoftwareApplication, Service + Offer (prices from `lib/pricing.ts`), FAQPage (only FAQs shown on that page), HowTo, Article, Person
+- [ ] VW-025 `sitemap.ts` (indexable pages only), `robots.ts` (AI crawlers allowed, `/styleguide` disallowed), `llms.txt`, `llms-full.txt`
+- [ ] VW-026 `/compliance/germany-xrechnung-2027` — answer-first, verified FactBlocks, what a FoxPro ERP must change, bridge vs migration, not legal advice
+- [ ] VW-027 `/compliance/us-irs-fire-to-iris` — same structure, IRS sources, FIRE-file impact, separate IRIS TCC
+- [ ] VW-028 Blog index + 3 posts (macro substitution; DBF → SQL Server types; reading a PJX), from the scanner's own source; static routes (no `[slug]`, see lessons)
+- [ ] VW-029 Lighthouse CI workflow + budgets; run Lighthouse locally; Search Console/Bing tokens via env (owner adds at launch)
+- [ ] Board: `docs/github/project-status.json` updated per task
+
+### Edge cases
+
+- Offer prices must equal `lib/pricing.ts` (test)
+- No JSON-LD for content not on the page (FAQPage only from rendered FAQs)
+- JSON-LD safe against `</script>` injection
+- noindex pages (legal templates, styleguide, 404) never in sitemap or llms.txt
+- Compliance pages: every dated claim from `facts.ts` (verified), "not legal advice" visible
