@@ -6,5 +6,5 @@ const meta = defineMeta("content/pages/legal/terms.mdx", rawMeta);
 export const metadata = pageMetadata(meta, "/legal/terms");
 
 export default function TermsPage() {
-  return <LegalPage Body={Body} meta={meta} />;
+  return <LegalPage Body={Body} meta={meta} path="/legal/terms" />;
 }

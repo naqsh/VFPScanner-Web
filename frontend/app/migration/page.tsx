@@ -9,14 +9,33 @@ import { buttonVariants } from "@/components/ui/button";
 import Body, { meta as rawMeta } from "@/content/pages/migration.mdx";
 import { defineMeta, pageMetadata } from "@/lib/content";
 import { faqByGroup, toFaqItems } from "@/lib/faq";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faqPage, service } from "@/lib/schema";
 
 const meta = defineMeta("content/pages/migration.mdx", rawMeta);
 export const metadata = pageMetadata(meta, "/migration");
 
+const faq = [
+  ...faqByGroup("Migration"),
+  ...faqByGroup("Compliance deadlines").filter((f) => f.question.startsWith("Is there a quick fix")),
+];
+
 export default function MigrationPage() {
   return (
     <main id="main" className="flex-1">
+      <JsonLd
+        data={[
+          service({
+            path: "/migration",
+            name: "Visual FoxPro to .NET and SQL Server migration",
+            serviceType: "Legacy application migration",
+            description: meta.description,
+          }),
+          faqPage(faq, "/migration"),
+        ]}
+      />
       <PageHeader
+        breadcrumbs={[{ name: "Migration", path: "/migration" }]}
         eyebrow="Migration"
         title="From Visual FoxPro to .NET and SQL Server, one module at a time"
         lead="Data first, then modules. Old and new run side by side, and nothing switches over until the results match."
@@ -38,10 +57,7 @@ export default function MigrationPage() {
 
       <Section id="faq" eyebrow="FAQ" title="Questions about migration" tone="muted">
         <div className="max-w-3xl">
-          <Faq items={toFaqItems([
-              ...faqByGroup("Migration"),
-              ...faqByGroup("Compliance deadlines").filter((f) => f.question.startsWith("Is there a quick fix")),
-            ])} />
+          <Faq items={toFaqItems(faq)} />
         </div>
       </Section>
 

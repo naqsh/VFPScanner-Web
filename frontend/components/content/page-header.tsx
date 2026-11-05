@@ -1,5 +1,8 @@
 import type { ReactNode } from "react";
 
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
+import type { Crumb } from "@/lib/schema";
+
 /** Top of an inner page: eyebrow, the page's only <h1>, lead and optional actions. */
 export function PageHeader({
   eyebrow,
@@ -7,7 +10,9 @@ export function PageHeader({
   lead,
   actions,
   updated,
+  breadcrumbs,
 }: {
+  breadcrumbs?: Crumb[];
   eyebrow?: string;
   title: string;
   lead?: ReactNode;
@@ -17,6 +22,11 @@ export function PageHeader({
   return (
     <header className="border-b bg-muted/30">
       <div className="mx-auto w-full max-w-6xl px-4 pt-12 pb-12 sm:px-6 lg:pt-16">
+        {breadcrumbs ? (
+          <div className="mb-6">
+            <Breadcrumbs items={breadcrumbs} />
+          </div>
+        ) : null}
         {eyebrow ? <p className="font-mono text-xs tracking-widest text-primary uppercase">{eyebrow}</p> : null}
         <h1 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">{title}</h1>
         {lead ? <div className="mt-5 max-w-2xl text-lg text-pretty text-muted-foreground">{lead}</div> : null}

@@ -42,7 +42,7 @@ Implement the current epic from docs/jira-tickets-json/:
 cd frontend && npm run lint && npm run typecheck && npm run test && npm run build
 
 ## Start
-Continue VW-E5 from docs/jira-tickets-json/VW-E5-seo-geo.json (next task: VW-023). Order agreed 2026-11-05: VW-E5 → VW-E6 part 1 (leads) → Vercel live → VW-E4
+Continue VW-E6 part 1 from docs/jira-tickets-json/VW-E6-leads-payments-ai.json (VW-030 Supabase, VW-031 forms). Order agreed 2026-11-05: VW-E5 ✅ → VW-E6 part 1 (leads) → Vercel live → VW-E4
 ```
 
 *Kick-off Prompt — VFPScanner Web — Version 0.1.0*

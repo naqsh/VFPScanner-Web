@@ -6,5 +6,5 @@ const meta = defineMeta("content/pages/legal/refunds.mdx", rawMeta);
 export const metadata = pageMetadata(meta, "/legal/refunds");
 
 export default function RefundsPage() {
-  return <LegalPage Body={Body} meta={meta} />;
+  return <LegalPage Body={Body} meta={meta} path="/legal/refunds" />;
 }

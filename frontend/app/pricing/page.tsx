@@ -9,14 +9,20 @@ import { defineMeta, pageMetadata } from "@/lib/content";
 import { faqByGroup, toFaqItems } from "@/lib/faq";
 import { primaryCta } from "@/lib/navigation";
 import { tiers } from "@/lib/pricing";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faqPage, offerCatalog } from "@/lib/schema";
 
 const meta = defineMeta("content/pages/pricing.mdx", rawMeta);
 export const metadata = pageMetadata(meta, "/pricing");
 
+const faq = faqByGroup("Pricing and working together");
+
 export default function PricingPage() {
   return (
     <main id="main" className="flex-1">
+      <JsonLd data={[offerCatalog(tiers, "/pricing"), faqPage(faq, "/pricing")]} />
       <PageHeader
+        breadcrumbs={[{ name: "Pricing", path: "/pricing" }]}
         eyebrow="Pricing"
         title="Start free. Pay a fixed price for the plan."
         lead="The scan is free. The assessment has a fixed price set by application size. Migrations are quoted after it."
@@ -32,7 +38,7 @@ export default function PricingPage() {
 
       <Section id="faq" eyebrow="FAQ" title="Questions about pricing" tone="muted">
         <div className="max-w-3xl">
-          <Faq items={toFaqItems(faqByGroup("Pricing and working together"))} />
+          <Faq items={toFaqItems(faq)} />
         </div>
       </Section>
 

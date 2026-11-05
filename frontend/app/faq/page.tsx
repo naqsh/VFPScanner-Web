@@ -6,6 +6,8 @@ import Body from "@/content/pages/faq.mdx";
 import { pageMetadata } from "@/lib/content";
 import { allFaq, faqGroups, faqMeta, toFaqItems } from "@/lib/faq";
 import { primaryCta } from "@/lib/navigation";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faqPage } from "@/lib/schema";
 
 export const metadata = pageMetadata(faqMeta, "/faq");
 
@@ -17,7 +19,9 @@ export default function FaqPage() {
   const groups = faqGroups();
   return (
     <main id="main" className="flex-1">
+      <JsonLd data={faqPage(allFaq, "/faq")} />
       <PageHeader
+        breadcrumbs={[{ name: "FAQ", path: "/faq" }]}
         eyebrow="FAQ"
         title="Questions and answers"
         lead={`${allFaq.length} answers about the scanner, the assessment, migration and the compliance deadlines.`}

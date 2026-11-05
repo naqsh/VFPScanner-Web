@@ -132,7 +132,7 @@
 
 `main` from 2026-11-05 (owner). PR #1 merged VW-E1..E3 and the board script into `main`. Owner fast-forwards the old branch once: `git push origin main:epic/vfpscanner-web-implementation`.
 
-## VW-E5 — in progress (owner: "yes" to the new order, 2026-11-05)
+## VW-E5 — done 2026-11-05 (owner: "yes" to the new order)
 
 **Branch:** `epic/VW-E5-seo-geo` from `main`. Order after this: VW-E6 part 1 (leads) → Vercel live → VW-E4.
 
@@ -148,14 +148,14 @@
 
 ### Plan
 
-- [ ] VW-023 Metadata: titles ≤ 60, descriptions ≤ 155 (schema tightened), canonical, Twitter card, generated OG images per page (Geist fonts), verification meta from env
-- [ ] VW-024 JSON-LD: `components/seo/JsonLd.tsx` (escaped), builders in `lib/schema/`; Organization + WebSite site-wide; breadcrumbs on inner pages; SoftwareApplication, Service + Offer (prices from `lib/pricing.ts`), FAQPage (only FAQs shown on that page), HowTo, Article, Person
-- [ ] VW-025 `sitemap.ts` (indexable pages only), `robots.ts` (AI crawlers allowed, `/styleguide` disallowed), `llms.txt`, `llms-full.txt`
-- [ ] VW-026 `/compliance/germany-xrechnung-2027` — answer-first, verified FactBlocks, what a FoxPro ERP must change, bridge vs migration, not legal advice
-- [ ] VW-027 `/compliance/us-irs-fire-to-iris` — same structure, IRS sources, FIRE-file impact, separate IRIS TCC
-- [ ] VW-028 Blog index + 3 posts (macro substitution; DBF → SQL Server types; reading a PJX), from the scanner's own source; static routes (no `[slug]`, see lessons)
-- [ ] VW-029 Lighthouse CI workflow + budgets; run Lighthouse locally; Search Console/Bing tokens via env (owner adds at launch)
-- [ ] Board: `docs/github/project-status.json` updated per task
+- [x] VW-023 Metadata: titles ≤ 60, descriptions ≤ 155 (schema tightened), canonical, Twitter card, generated OG images per page (Geist fonts), verification meta from env
+- [x] VW-024 JSON-LD: `components/seo/JsonLd.tsx` (escaped), builders in `lib/schema/`; Organization + WebSite site-wide; breadcrumbs on inner pages; SoftwareApplication, Service + Offer (prices from `lib/pricing.ts`), FAQPage (only FAQs shown on that page), HowTo, Article, Person
+- [x] VW-025 `sitemap.ts` (indexable pages only), `robots.ts` (AI crawlers allowed, `/styleguide` disallowed), `llms.txt`, `llms-full.txt`
+- [x] VW-026 `/compliance/germany-xrechnung-2027` — answer-first, verified FactBlocks, what a FoxPro ERP must change, bridge vs migration, not legal advice
+- [x] VW-027 `/compliance/us-irs-fire-to-iris` — same structure, IRS sources, FIRE-file impact, separate IRIS TCC
+- [x] VW-028 Blog index + 3 posts (macro substitution; DBF → SQL Server types; reading a PJX), from the scanner's own source; static routes (no `[slug]`, see lessons)
+- [x] VW-029 Lighthouse CI workflow + budgets; run Lighthouse locally; Search Console/Bing tokens via env (owner adds at launch)
+- [x] Board: `docs/github/project-status.json` updated per task
 
 ### Edge cases
 
@@ -164,3 +164,22 @@
 - JSON-LD safe against `</script>` injection
 - noindex pages (legal templates, styleguide, 404) never in sitemap or llms.txt
 - Compliance pages: every dated claim from `facts.ts` (verified), "not legal advice" visible
+
+### Evidence (VW-E5)
+
+- `npm run verify` ✅ — lint, typecheck, 94 unit tests (85% statements), 44 static routes incl. 16 OG images, sitemap, robots, llms.txt, llms-full.txt
+- `npm run test:e2e` ✅ — 109 passed, 59 skipped by design: every page axe-clean light/dark, one h1, no horizontal scroll; SEO spec: canonical, OG image 200 PNG, JSON-LD parses with Organization/WebSite/BreadcrumbList, FAQPage only lists visible questions, robots/sitemap/llms content types, heading anchors
+- Lighthouse (5 pages × 3 runs, mobile): performance 92–98, accessibility 98–100, best practices 100, SEO 100. Simulated LCP 2.8–3.2 s (warn); measured LCP 0.3 s
+- Unit: offers equal lib/pricing.ts, `</script>` cannot escape JSON-LD, templates never in sitemap/llms, every page has a route + MDX source
+
+### Owner (VW-E5)
+
+- [ ] At launch: Search Console + Bing verification (`docs/guidance/search-console.md`)
+- [ ] Review the two compliance pages and the three blog posts (technical claims are from the scanner source and the cited official pages)
+- [ ] Decide: keep performance budget at "fail < 90, target 95", or invest in reducing framework JS later
+
+## Next: VW-E6 part 1 — lead forms (agreed order)
+
+- [ ] VW-030 Supabase schema + RLS (needs a free Supabase project — owner)
+- [ ] VW-031 Free-scan + contact forms: Zod, Turnstile, honeypot, rate limit, Resend email (needs Resend + Turnstile keys and D7 contact email — owner)
+- [ ] Then: Vercel live (VW-006), then VW-E4 motion

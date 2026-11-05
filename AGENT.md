@@ -44,7 +44,7 @@ Root index for the VFPScanner marketing and sales website. Engineering standards
 | **VW-E2** | Brand and design system | ✅ Done |
 | **VW-E3** | Core pages and content | ✅ Done (legal texts need owner review) |
 | **VW-E4** | Motion graphics | Planned |
-| **VW-E5** | SEO / AIO / GEO | Planned |
+| **VW-E5** | SEO / AIO / GEO | ✅ Done (Search Console verification at launch) |
 | **VW-E6** | Leads, payments and AI assistant | Planned |
 | **VW-E7** | Launch and German (`/de`) | Planned |
 
@@ -71,6 +71,7 @@ Root index for the VFPScanner marketing and sales website. Engineering standards
 | Site AI agents | agents/AGENT.md |
 | Database (leads, orders) | supabase/AGENT.md |
 | Local setup / Vercel | docs/guidance/local-setup.md, docs/guidance/vercel-setup.md |
+| Search Console / Bing | docs/guidance/search-console.md |
 | GitHub Project board | docs/guidance/github-project.md (`scripts/github-project/sync-project.mjs`, status in `docs/github/project-status.json`) |
 | CI/CD & Vercel | infrastructure/AGENT.md |
 

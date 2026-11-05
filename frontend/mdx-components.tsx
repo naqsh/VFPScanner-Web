@@ -22,9 +22,9 @@ function Table({ className, ...props }: TableHTMLAttributes<HTMLTableElement>) {
 
 const components: MDXComponents = {
   h2: (p: HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 className="mt-12 mb-4 text-2xl font-semibold tracking-tight text-balance first:mt-0" {...p} />
+    <h2 className="mt-12 mb-4 scroll-mt-20 text-2xl font-semibold tracking-tight text-balance first:mt-0" {...p} />
   ),
-  h3: (p: HTMLAttributes<HTMLHeadingElement>) => <h3 className="mt-8 mb-3 text-lg font-semibold" {...p} />,
+  h3: (p: HTMLAttributes<HTMLHeadingElement>) => <h3 className="mt-8 mb-3 scroll-mt-20 text-lg font-semibold" {...p} />,
   p: (p: HTMLAttributes<HTMLParagraphElement>) => <p className="my-4 leading-7 text-pretty" {...p} />,
   ul: (p: HTMLAttributes<HTMLUListElement>) => <ul className="my-4 list-disc space-y-2 pl-6 marker:text-primary" {...p} />,
   ol: (p: HTMLAttributes<HTMLOListElement>) => <ol className="my-4 list-decimal space-y-2 pl-6 marker:text-primary" {...p} />,

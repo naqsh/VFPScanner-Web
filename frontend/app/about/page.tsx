@@ -4,6 +4,8 @@ import { CtaBand } from "@/components/sections/cta-band";
 import Body, { meta as rawMeta } from "@/content/pages/about.mdx";
 import { defineMeta, pageMetadata } from "@/lib/content";
 import { primaryCta } from "@/lib/navigation";
+import { JsonLd } from "@/components/seo/json-ld";
+import { person } from "@/lib/schema";
 
 const meta = defineMeta("content/pages/about.mdx", rawMeta);
 export const metadata = pageMetadata(meta, "/about");
@@ -11,7 +13,9 @@ export const metadata = pageMetadata(meta, "/about");
 export default function AboutPage() {
   return (
     <main id="main" className="flex-1">
+      <JsonLd data={person()} />
       <PageHeader
+        breadcrumbs={[{ name: "About", path: "/about" }]}
         eyebrow="About"
         title="One engineer, from scan to go-live"
         lead="VFP Migration Scanner is run by Kashif, a senior .NET engineer who specialises in moving Visual FoxPro applications to .NET and SQL Server."

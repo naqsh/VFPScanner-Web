@@ -16,7 +16,7 @@ Progress tracker for all epics. Sync when JSON tickets or completion status chan
 | VW-E2 | Brand and design system | `epic/VW-E2-brand-design` | VW-008..011 | S | ✅ 2026-11-04 (branch stacked on VW-E1) |
 | VW-E3 | Core pages and content | `epic/VW-E3-core-pages` | VW-012..017 | M | ✅ 2026-11-04 (stacked on VW-E2) |
 | VW-E4 | Motion graphics | `epic/VW-E4-motion` | VW-018..022 | M | ⬜ |
-| VW-E5 | SEO / AIO / GEO | `epic/VW-E5-seo-geo` | VW-023..029 | M | ⬜ |
+| VW-E5 | SEO / AIO / GEO | `epic/VW-E5-seo-geo` | VW-023..029 | M | ✅ 2026-11-05 |
 | VW-E6 | Leads, payments and AI assistant | `epic/VW-E6-leads-payments-ai` | VW-030..036 | L | ⬜ |
 | VW-E7 | Launch and German version | `epic/VW-E7-launch-de` | VW-037..040 | M | ⬜ |
 
@@ -51,4 +51,12 @@ VW-E4, VW-E5 and VW-E6 can run in parallel after VW-E3.
 | VW-015 | Pricing, FAQ (23), About, Contact | ✅ contact form + booking disabled until VW-E6 |
 | VW-016 | Free-scan page | ✅ UI + CLI steps, SmartScreen, no-.NET; download disabled until VW-031 |
 | VW-017 | Legal templates | ✅ privacy, terms, refunds, imprint — template banner + noindex; **owner review before launch** |
-| VW-018 | Motion primitives | ⬜ next (VW-E4) |
+| VW-023 | Metadata + OG images | ✅ titles ≤ 60 / descriptions ≤ 155 enforced by schema; 16 static OG images (Geist); Twitter card; verification tokens via env |
+| VW-024 | JSON-LD | ✅ Organization, WebSite, BreadcrumbList (visible trail), SoftwareApplication, Service + Offer (from lib/pricing), OfferCatalog, FAQPage (only shown FAQs), HowTo, Article/TechArticle, Person; `<` escaped |
+| VW-025 | sitemap, robots, llms.txt, llms-full.txt | ✅ one page registry (lib/pages.ts); templates/noindex excluded; AI crawlers allowed |
+| VW-026 | Germany compliance page | ✅ `/compliance/germany-xrechnung-2027` — 5 verified facts (IHK/BMF), formats, exceptions, what changes, options |
+| VW-027 | US compliance page | ✅ `/compliance/us-irs-fire-to-iris` — 4 verified facts (IRS QuickAlerts, Pub 5719), separate IRIS TCC, FIRE-file impact |
+| VW-028 | Blog + 3 posts | ✅ `/blog`, macro substitution, DBF → SQL Server types, PJX sizing — all from the scanner's source |
+| VW-029 | Lighthouse CI + Search Console | ✅ workflow + budgets (a11y/BP ≥ 95, SEO 100, perf fail < 90 / target 95); guide for Search Console/Bing (owner, at launch) |
+| VW-030 | Supabase schema + RLS | ⬜ next (VW-E6 part 1, agreed order) |
+| VW-018 | Motion primitives | ⬜ after Vercel live |

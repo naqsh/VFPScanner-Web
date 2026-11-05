@@ -6,6 +6,16 @@
 
 export const SCANNER_VERSION = "0.2";
 
+/** Short feature list (SoftwareApplication JSON-LD and summaries). */
+export const scannerFeatures = [
+  "Reads PJX, PRG, SCX, VCX, FRX, LBX, MNX, DBC and DBF files with its own reader",
+  "Finds 13 migration-risk patterns, file by file",
+  "Profiles every table with proposed SQL Server types",
+  "Finds duplicates, old copies and files outside any project",
+  "Flags invoice, VAT, 1099, payroll and EDI data by name, never by value",
+  "Runs locally and read-only; sends nothing over the network",
+];
+
 export type FileType = { ext: string; what: string };
 
 export const fileTypes: FileType[] = [

@@ -1,0 +1,64 @@
+export const meta = {
+  title: "DBF to SQL Server: data types and the traps",
+  description:
+    "How Visual FoxPro field types map to SQL Server, and the data problems that break migrations: empty dates, code pages, deleted rows, missing memo files.",
+  updated: "2026-11-05",
+  published: "2026-11-05",
+};
+
+Moving FoxPro tables to SQL Server looks like a mechanical job: read each field, pick a type, copy the rows. The type mapping is the easy part. The data inside the tables is where migrations go wrong.
+
+## The type mapping
+
+This is the mapping the scanner proposes for every field. It favours safe defaults; review it with the people who know the data.
+
+| FoxPro type | Code | Proposed SQL Server type |
+|---|---|---|
+| Character, Varchar | C, V | `nvarchar(n)` |
+| Memo | M | `nvarchar(max)` |
+| Numeric or Float, no decimals, up to 9 digits | N, F | `int` |
+| Numeric or Float, no decimals, up to 18 digits | N, F | `bigint` |
+| Numeric or Float with decimals | N, F | `decimal(p,s)`, keeping the width and decimals |
+| Integer | I | `int` |
+| Double | B | `float` |
+| Currency | Y | `decimal(19,4)` |
+| Date | D | `date` |
+| DateTime | T | `datetime2(0)` |
+| Logical | L | `bit` |
+| General, Blob, Varbinary | G, W, Q | `varbinary(max)` |
+
+Anything else is marked for review.
+
+Why `nvarchar` and not `varchar`? FoxPro text is stored in a code page. Unicode columns avoid a second round of encoding problems once the data has been converted correctly. Why `decimal(19,4)` and not `money`? It keeps the same four decimal places as FoxPro Currency and behaves predictably in calculations.
+
+## The traps
+
+### Empty dates
+
+FoxPro has an empty date, `{ / / }`. SQL Server does not. Empty dates become `NULL`, which changes how every query, report and comparison on that column behaves. The scanner lists date fields that contain empty values, so you can decide per field what `NULL` means.
+
+### Code pages
+
+Every DBF has a code page mark in its header. When it is not set, FoxPro uses the machine's settings, and the same bytes can turn into different letters on another computer. If a table has no code page and contains accented characters, umlauts and similar letters may convert wrongly. Confirm the encoding before converting text.
+
+### Deleted rows
+
+`DELETE` in FoxPro only marks a row. The row stays in the file until `PACK`. Many tables hold years of deleted rows. Decide on purpose whether to migrate them: they may be needed for history, or they may be garbage that a report would suddenly count.
+
+### Missing or damaged files
+
+A table whose memo file (`.fpt`) is missing cannot have its memo contents migrated. A file shorter than its header says may be damaged and needs a repair first. Tables close to the 2 GB DBF limit need extra care with time and space.
+
+### Fixed-width text
+
+Character fields are padded with spaces to their full width. FoxPro comparisons often ignore that, depending on `SET EXACT` and `SET ANSI`. After migration, decide whether to trim trailing spaces, and test the queries that compare strings.
+
+## What the scan reports per table
+
+- Rows, and how many are deleted
+- Every field with its proposed SQL Server type
+- Blank rates per field
+- The code page, or a warning when none is set
+- Data issues to resolve before migrating
+
+All of this comes from reading the files on your PC. Only counts and names go into the report, never the values. [Run the free scan](/free-scan) to see it for your tables.

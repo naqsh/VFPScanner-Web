@@ -43,6 +43,10 @@ export const envSchema = z.object({
 
   NEXT_PUBLIC_CAL_LINK: optionalUrl,
   NEXT_PUBLIC_PLAUSIBLE_DOMAIN: optionalString,
+
+  /** Search engine ownership tokens (VW-029), added by the owner at launch */
+  GOOGLE_SITE_VERIFICATION: optionalString,
+  BING_SITE_VERIFICATION: optionalString,
 });
 
 export type Env = z.infer<typeof envSchema>;

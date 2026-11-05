@@ -1,0 +1,68 @@
+export const meta = {
+  title: "German e-invoicing 2027: what FoxPro ERPs must change",
+  description:
+    "From 2027 German B2B invoices must be XRechnung or ZUGFeRD. What that means for a Visual FoxPro ERP, what has to change, and bridge vs migration.",
+  updated: "2026-11-05",
+  published: "2026-11-05",
+  faq: [
+    {
+      question: "Does the e-invoicing rule apply if we only sell to consumers?",
+      answer:
+        "No. The obligation covers invoices between businesses in Germany (B2B). Invoices to consumers are not included, and neither are small invoices up to €250 or travel tickets.",
+    },
+    {
+      question: "Is a PDF invoice by email still allowed?",
+      answer:
+        "Until 31 December 2026, yes, if the recipient agrees. A PDF by email is not an e-invoice: once the obligation applies to you, domestic B2B invoices must be XRechnung, ZUGFeRD from version 2.0.1, or another EN 16931 format.",
+    },
+    {
+      question: "Can we keep sending EDI invoices?",
+      answer:
+        "During 2027, EDI invoices may still be issued if the recipient agrees. From 1 January 2028 the new requirements apply to everyone, so plan the change before then.",
+    },
+    {
+      question: "Does a bridge mean we never have to migrate?",
+      answer:
+        "A bridge solves the invoice format, not the age of the system. It buys time and keeps you compliant while a migration is planned. Whether a bridge alone is enough depends on the rest of the application, which is what the assessment looks at.",
+    },
+  ],
+};
+
+## What counts as an e-invoice
+
+An e-invoice is an invoice issued, sent and received in a **structured electronic format** that a computer can read without a person retyping it. Accepted formats:
+
+- **XRechnung**, the German format based on the European standard EN 16931
+- **ZUGFeRD from version 2.0.1**, a PDF with the structured data embedded
+- Other formats that meet EN 16931
+
+A PDF sent by email is **not** an e-invoice. Neither is a scanned paper invoice.
+
+Not covered: invoices to consumers (B2C), small invoices up to €250, travel tickets, and certain tax-exempt supplies.
+
+## What a FoxPro ERP has to change
+
+Most FoxPro systems produce invoices with `REPORT FORM`, print them or turn them into PDFs. That output is made for people, not machines. To issue e-invoices, four things usually change:
+
+1. **The data.** EN 16931 needs fields many older systems never stored in a clean way: VAT IDs for seller and buyer, a VAT category per line, standard unit codes, payment terms and bank details, and a buyer reference where the customer asks for one.
+2. **The output.** Instead of (or next to) the printed report, the system must produce XRechnung XML or a ZUGFeRD PDF with embedded XML.
+3. **Validation.** Each invoice should be checked against the official rules before it is sent, so a missing VAT ID is caught by you, not by your customer.
+4. **Receiving.** Since 2025 you must be able to receive e-invoices too: store the XML, show it in readable form, and get the data into your purchasing process.
+
+The hardest part is rarely the XML. It is finding where invoice data really lives, how clean it is, and which code builds it. In FoxPro applications that logic is often spread across forms, reports and macro-built commands.
+
+## Your options
+
+| Option | What it means | When it fits |
+|---|---|---|
+| **Bridge** | A small program reads the invoice data from your FoxPro tables and produces XRechnung or ZUGFeRD. The FoxPro system stays as it is. | The deadline is close, and the rest of the application works. |
+| **Migration** | Invoicing is rebuilt in .NET and SQL Server as part of moving the application. | A migration is planned anyway, and there is time before your date. |
+| **Bridge, then migration** | The bridge keeps you compliant now; the migration follows on its own schedule. | Most FoxPro ERPs with a 2027 date. |
+
+The [Migration Assessment](/assessment) compares these for your application, with effort ranges.
+
+## How the scan helps
+
+The [free scan](/free-scan) looks for invoice and VAT data by table, field, class and procedure names, and reports where it is, never the values. It also shows the data quality of those tables, such as blank rates, deleted rows and code page problems that would break an XML invoice.
+
+This page explains what the rules mean technically for a FoxPro application. It is not legal or tax advice; please confirm your obligations with your tax adviser.

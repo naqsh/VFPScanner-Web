@@ -1,0 +1,64 @@
+export const meta = {
+  title: "IRS FIRE to IRIS: what changes for FoxPro 1099 exports",
+  description:
+    "FIRE closes on 19 November 2026 and IRIS takes over. What that means for a FoxPro system that writes 1099 files, and the options before the 2027 season.",
+  updated: "2026-11-05",
+  published: "2026-11-05",
+  faq: [
+    {
+      question: "Can we use our FIRE TCC to file through IRIS?",
+      answer:
+        "No. IRIS needs its own Transmitter Control Code. A TCC obtained for FIRE cannot be used for IRIS. Apply through the IRIS Application for TCC on irs.gov, and allow time for approval.",
+    },
+    {
+      question: "We file fewer than 100 forms. Do we need special software?",
+      answer:
+        "Not necessarily. The IRIS Taxpayer Portal accepts returns typed in by hand or uploaded as CSV files of up to 100 records per upload. A FoxPro system can often produce that CSV with a small change.",
+    },
+    {
+      question: "What about corrections to returns we filed through FIRE?",
+      answer:
+        "From January 2027, IRIS is the only IRS e-filing system for information returns, including corrected and prior-year returns. After FIRE closes, corrections go through IRIS.",
+    },
+    {
+      question: "Does this mean we have to migrate the whole FoxPro system?",
+      answer:
+        "No. The filing change only affects the output for information returns. A focused change or a small bridge that turns your FoxPro data into IRIS CSV or XML is usually enough. A migration is a separate decision.",
+    },
+  ],
+};
+
+## How IRIS filing works
+
+IRIS, the Information Returns Intake System, offers two ways to file:
+
+- **Taxpayer Portal.** A web portal. Returns are typed in by hand or uploaded as **CSV files of up to 100 records** per upload. No special software is needed.
+- **Application to Application (A2A).** For larger volumes. Software sends returns in **XML** using the IRIS schemas.
+
+Both need an **IRIS Transmitter Control Code (TCC)**. A TCC from FIRE does not carry over.
+
+## What a FoxPro system has to change
+
+Many FoxPro systems that handle 1099s write a FIRE file: fixed-width text records in the layout from IRS Publication 1220, built with low-level file commands such as `FCREATE`, `FWRITE` or `STRTOFILE`. IRIS does not accept that layout. Depending on your volume, the export needs to produce:
+
+- **CSV in the IRIS template layout**, for the Taxpayer Portal, if you file a modest number of forms, or
+- **IRIS XML**, for A2A, usually through software or a filing service that holds the IRIS schemas.
+
+Two more things to check:
+
+1. **TIN and name data.** Taxpayer IDs, names and addresses often sit in old tables with blanks and inconsistent formats. Bad data is rejected whichever system you use.
+2. **Who files.** If a service bureau or software vendor filed for you through FIRE, ask how and when they move to IRIS. Your export format may need to change for them too.
+
+## Your options
+
+| Option | What it means | When it fits |
+|---|---|---|
+| **CSV for the portal** | Change the FoxPro export to the IRIS CSV template and upload it. | A modest number of forms, filed by your own team. |
+| **Bridge to XML or a filing service** | A small program reads the 1099 data from your FoxPro tables and produces IRIS XML, or the format your filing service needs. | Larger volumes, or when the FoxPro code should not be touched. |
+| **Migration** | Information-return reporting is rebuilt as part of moving the application to .NET and SQL Server. | A migration is planned anyway. Do not let the January 2027 season wait for it. |
+
+## How the scan helps
+
+The [free scan](/free-scan) flags US information-return data (1099, W-2 and TIN fields) by name, never by value, and lists every place that writes files directly with low-level file I/O, which is where FIRE exports usually live. That makes it quick to find the code that has to change.
+
+This page explains what the change means technically for a FoxPro application. It is not legal or tax advice; please confirm your obligations with your tax adviser or filing provider.

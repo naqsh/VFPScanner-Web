@@ -35,14 +35,21 @@
     "VW-015": "Done",
     "VW-016": "Done",
     "VW-017": "Done",
-    "VW-E5": "In Progress"
+    "VW-E5": "Done",
+    "VW-023": "Done",
+    "VW-024": "Done",
+    "VW-025": "Done",
+    "VW-026": "Done",
+    "VW-027": "Done",
+    "VW-028": "Done",
+    "VW-029": "Done"
   },
   "ownerIssues": [
     {
       "id": "OWNER-1",
-      "title": "Merge epic PRs in order: VW-E1 → VW-E2 → VW-E3",
-      "status": "Todo",
-      "body": "Open pull requests from `epic/VW-E1-foundation`, then `epic/VW-E2-brand-design`, then `epic/VW-E3-core-pages` into `epic/vfpscanner-web-implementation`. Each branch is stacked on the previous one. Wait for CI to pass, then merge with **Create a merge commit** (not squash), as in `docs/EXECUTION-RULES.md` §8."
+      "title": "Merge VW-E1 → VW-E3 into main (done via PR #1)",
+      "status": "Done",
+      "body": "VW-E1, VW-E2, VW-E3 and the board script were merged into `main` with PR #1 on 2026-11-05. `main` is now the integration branch. One-time clean-up: `git push origin main:epic/vfpscanner-web-implementation` to bring the retired branch level."
     },
     {
       "id": "OWNER-2",
@@ -61,6 +68,12 @@
       "title": "Decisions: domain (D1), prices (D3), payment provider (D4), contact email (D7), location on About (D9)",
       "status": "Todo",
       "body": "Open decisions from `docs/tasks/todo.md`:\n\n- [ ] D1 Domain\n- [ ] D3 Final prices (Assessment S/M/L, retainer)\n- [ ] D4 Payment provider — confirm Lemon Squeezy accepts a fixed-price consulting service (`docs/adr/ADR-002-merchant-of-record.md`)\n- [ ] D7 Public contact email\n- [ ] D9 Show location on About? (Imprint needs a postal address anyway)"
+    },
+    {
+      "id": "OWNER-5",
+      "title": "Search Console and Bing verification at launch",
+      "status": "Todo",
+      "body": "Follow `docs/guidance/search-console.md` once the domain is live (VW-040): add `GOOGLE_SITE_VERIFICATION` / `BING_SITE_VERIFICATION` in Vercel, verify, submit `sitemap.xml`."
     }
   ]
 }

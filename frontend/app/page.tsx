@@ -19,6 +19,9 @@ import { defineMeta } from "@/lib/content";
 import { featuredFaq, toFaqItems } from "@/lib/faq";
 import { primaryCta } from "@/lib/navigation";
 import { tiers } from "@/lib/pricing";
+import { JsonLd } from "@/components/seo/json-ld";
+import { scannerFeatures } from "@/content/data/scanner";
+import { faqPage, scannerApp } from "@/lib/schema";
 
 const meta = defineMeta("content/pages/home.mdx", rawMeta);
 
@@ -33,6 +36,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main id="main" className="flex-1">
+      <JsonLd data={[scannerApp(scannerFeatures), faqPage(featuredFaq(), "/")]} />
       <Hero
         eyebrow="Visual FoxPro → .NET"
         title="Know exactly what your FoxPro application needs before the deadlines arrive."
@@ -69,7 +73,19 @@ export default function Home() {
           <FactBlock fact={facts.usFireLastDay} />
           <FactBlock fact={facts.usIrisOnly} />
         </div>
-        <p className="mt-6 text-sm text-muted-foreground">
+        <ul className="mt-6 flex flex-col gap-2 text-sm font-medium sm:flex-row sm:gap-6">
+          <li>
+            <Link href="/compliance/germany-xrechnung-2027" className="text-primary underline underline-offset-3">
+              Germany: what FoxPro ERPs must change for e-invoicing
+            </Link>
+          </li>
+          <li>
+            <Link href="/compliance/us-irs-fire-to-iris" className="text-primary underline underline-offset-3">
+              US: what changes for FoxPro 1099 exports
+            </Link>
+          </li>
+        </ul>
+        <p className="mt-4 text-sm text-muted-foreground">
           We explain what the rules mean for your application, not your legal obligations. Please confirm those with
           your tax adviser.
         </p>

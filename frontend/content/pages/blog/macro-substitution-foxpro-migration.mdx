@@ -1,0 +1,61 @@
+export const meta = {
+  title: "Macro substitution: the #1 FoxPro migration risk",
+  description:
+    "Why & macro substitution and EVALUATE break automatic FoxPro conversion, how to find every use before you migrate, and how to redesign them in C#.",
+  updated: "2026-11-05",
+  published: "2026-11-05",
+};
+
+In Visual FoxPro, `&` turns the contents of a variable into code. It is one of the language's most useful features, and the one that causes the most trouble when you move to .NET.
+
+## What it looks like
+
+```foxpro
+lcTable = "customers"
+USE &lcTable
+
+lcFilter = "state = 'NY' AND balance > 0"
+SELECT * FROM orders WHERE &lcFilter INTO CURSOR curOrders
+
+lcCmd = "DO FORM " + lcFormName
+&lcCmd
+```
+
+The table name, the filter and the command only exist when the program runs. They may come from a variable, a configuration table, an INI file or what a user typed. `EVALUATE()` and `EXECSCRIPT()` do the same with expressions and whole blocks of code.
+
+## Why converters miss it
+
+A converter, a code-reading tool or an AI assistant sees `USE &lcTable`. It does not see which tables that line opens, because the answer is in the data, not the code. So it cannot translate the line, and it cannot tell you what depends on it.
+
+That is why the scanner rates macro substitution and `EVALUATE`/`EXECSCRIPT` as **High** risk, with the largest weight of its 13 patterns. Each use needs a person to work out what it really does.
+
+## How common it is
+
+More common than most teams expect. In GoFish, an open-source VFPX tool, the scanner found **397 uses of macro substitution in 16 files**. Line-of-business applications that build screens and reports from configuration tables often have more.
+
+## How to find every use
+
+Searching for `&` is not enough. The character also appears in comments, in strings and in `&&` end-of-line comments. The scanner removes comments and string literals before it matches, so commented-out code does not count, and it lists every use file by file in the JSON report.
+
+Two limits to know: abbreviated commands are not all matched, and strings in `[...]` brackets are not removed before matching. Treat the count as a firm lower bound for planning.
+
+## How to redesign it in C#
+
+There is no single translation, because each use has a different purpose. The common cases:
+
+| FoxPro pattern | Purpose | C# redesign |
+|---|---|---|
+| `USE &lcTable` | Choose a table at run time | A fixed list of allowed tables, each with its own repository or query |
+| `WHERE &lcFilter` | Build a filter from text | A query builder with **parameters**, never string concatenation |
+| `&lcCmd` with `DO FORM` | Open a screen chosen at run time | A dictionary from names to forms or views |
+| `EVALUATE(lcExpr)` | Calculate a formula stored in a table | A small expression evaluator with a list of allowed functions, or the formulas moved into code |
+
+The filter case matters most. A filter built from text and passed to SQL Server is an SQL injection risk. In FoxPro the text often came from trusted tables; after migration it may sit behind a web page. Parameterised queries remove that risk.
+
+## What to do first
+
+1. Count and list every use. That number, and where the uses are, drives the effort estimate more than lines of code do.
+2. Group them by purpose. Most applications have a handful of patterns repeated many times.
+3. Decide the redesign once per pattern, then apply it module by module.
+
+The [free scan](/free-scan) does step 1 for you, on your own PC. The [Migration Assessment](/assessment) covers steps 2 and 3.

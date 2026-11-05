@@ -64,7 +64,7 @@ test.describe("layout shell", () => {
   });
 
   test("unbuilt pages show the 404 'not published yet' page", async ({ page }) => {
-    const res = await page.goto("/compliance/germany-xrechnung-2027");
+    const res = await page.goto("/sample-report");
     expect(res?.status()).toBe(404);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("This page is not published yet");
     await expect(page.getByRole("link", { name: "Go to the home page" })).toBeVisible();

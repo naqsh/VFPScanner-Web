@@ -6,7 +6,10 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { FeatureGrid } from "@/components/sections/feature-grid";
 import { Section } from "@/components/sections/section";
 import { buttonVariants } from "@/components/ui/button";
+import { scanSteps } from "@/content/data/free-scan";
 import { homeFeatures } from "@/content/data/home";
+import { JsonLd } from "@/components/seo/json-ld";
+import { howTo } from "@/lib/schema";
 import Body, { meta as rawMeta } from "@/content/pages/free-scan.mdx";
 import { defineMeta, pageMetadata } from "@/lib/content";
 import { cn } from "@/lib/utils";
@@ -23,7 +26,16 @@ const needs = [
 export default function FreeScanPage() {
   return (
     <main id="main" className="flex-1">
+      <JsonLd
+        data={howTo({
+          path: "/free-scan",
+          name: "Scan a Visual FoxPro application with the free scanner",
+          description: meta.description,
+          steps: scanSteps,
+        })}
+      />
       <PageHeader
+        breadcrumbs={[{ name: "Free scan", path: "/free-scan" }]}
         eyebrow="Free scan"
         title="See what your FoxPro application contains"
         lead="Run the read-only scanner on your PC and see size, risk, data and compliance signals. Your code never leaves your machine."
@@ -51,7 +63,26 @@ export default function FreeScanPage() {
         <FeatureGrid items={needs} />
       </Section>
 
-      <Prose className="pt-0">
+      <Section id="run" eyebrow="Run it" title="Scan with the browser interface" tone="muted">
+        <ol className="grid max-w-3xl gap-4">
+          {scanSteps.map((s, i) => (
+            <li key={s.name} id={`step-${i + 1}`} className="flex gap-4 rounded-xl border bg-card p-5">
+              <span
+                aria-hidden="true"
+                className="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-primary/40 font-mono text-sm text-primary"
+              >
+                {i + 1}
+              </span>
+              <div>
+                <h3 className="font-semibold">{s.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{s.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      <Prose>
         <Body />
       </Prose>
 

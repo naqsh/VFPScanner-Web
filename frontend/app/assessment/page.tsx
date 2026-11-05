@@ -11,16 +11,32 @@ import Body, { meta as rawMeta } from "@/content/pages/assessment.mdx";
 import { defineMeta, pageMetadata } from "@/lib/content";
 import { faqByGroup, toFaqItems } from "@/lib/faq";
 import { tiers } from "@/lib/pricing";
+import { JsonLd } from "@/components/seo/json-ld";
+import { faqPage, service } from "@/lib/schema";
 
 const meta = defineMeta("content/pages/assessment.mdx", rawMeta);
 export const metadata = pageMetadata(meta, "/assessment");
 
 const assessment = tiers.filter((t) => t.id === "assessment");
+const faq = faqByGroup("Migration Assessment");
 
 export default function AssessmentPage() {
   return (
     <main id="main" className="flex-1">
+      <JsonLd
+        data={[
+          service({
+            path: "/assessment",
+            name: "Visual FoxPro Migration Assessment",
+            serviceType: "Software migration assessment",
+            description: meta.description,
+            tier: assessment[0],
+          }),
+          faqPage(faq, "/assessment"),
+        ]}
+      />
       <PageHeader
+        breadcrumbs={[{ name: "Assessment", path: "/assessment" }]}
         eyebrow="Migration Assessment"
         title="A fixed-price plan for your FoxPro migration"
         lead="In 5 to 10 working days, your scan becomes a written plan: what is hard and why, what the data migration involves, what you can leave behind, and what to do first."
@@ -49,7 +65,7 @@ export default function AssessmentPage() {
 
       <Section id="faq" eyebrow="FAQ" title="Questions about the assessment">
         <div className="max-w-3xl">
-          <Faq items={toFaqItems(faqByGroup("Migration Assessment"))} />
+          <Faq items={toFaqItems(faq)} />
         </div>
       </Section>
 

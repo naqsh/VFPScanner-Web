@@ -21,6 +21,7 @@ export default function ContactPage() {
   return (
     <main id="main" className="flex-1">
       <PageHeader
+        breadcrumbs={[{ name: "Contact", path: "/contact" }]}
         eyebrow="Contact"
         title="Ask about your FoxPro application"
         lead="You get an answer from the engineer who would do the work, not a sales team."

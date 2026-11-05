@@ -6,5 +6,5 @@ const meta = defineMeta("content/pages/legal/privacy.mdx", rawMeta);
 export const metadata = pageMetadata(meta, "/legal/privacy");
 
 export default function PrivacyPage() {
-  return <LegalPage Body={Body} meta={meta} />;
+  return <LegalPage Body={Body} meta={meta} path="/legal/privacy" />;
 }

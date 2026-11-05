@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
 import { DevConfigBanner } from "@/components/dev-config-banner";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { JsonLd } from "@/components/seo/json-ld";
 import { featureStatus, getEnv } from "@/lib/env";
+import { GeistMonoLazy } from "@/lib/fonts";
+import { organization, website } from "@/lib/schema";
 import { resolveSiteUrl, site } from "@/lib/site";
 
 import "./globals.css";
@@ -28,7 +30,12 @@ export const metadata: Metadata = {
     description: site.description,
     locale: "en_US",
   },
+  twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
+  verification: {
+    google: env.GOOGLE_SITE_VERIFICATION,
+    other: env.BING_SITE_VERIFICATION ? { "msvalidate.01": env.BING_SITE_VERIFICATION } : undefined,
+  },
 };
 
 export const viewport: Viewport = {
@@ -42,7 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   const showBanner = process.env.NODE_ENV === "development";
 
   return (
-    <html lang={site.locale} className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}>
+    <html lang={site.locale} className={`${GeistSans.variable} ${GeistMonoLazy.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <a
           href="#main"
@@ -54,6 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         {children}
         <SiteFooter />
+        <JsonLd data={[organization(), website()]} />
       </body>
     </html>
   );

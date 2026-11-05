@@ -1,0 +1,67 @@
+export const meta = {
+  title: "How big is my FoxPro application? Reading the PJX",
+  description:
+    "What a FoxPro project file (.pjx) tells you about the size of your application, what it hides, and why old copies change the migration estimate.",
+  updated: "2026-11-05",
+  published: "2026-11-05",
+};
+
+"How big is it?" is the first question in every migration conversation, and the answer is usually a guess. The project file can replace the guess with facts, as long as you know what it leaves out.
+
+## The PJX is a table
+
+A Visual FoxPro project file (`.pjx`) is an ordinary FoxPro table with a memo file (`.pjt`). Each row is one file in the project. You can open it like any table:
+
+```foxpro
+USE myapp.pjx AGAIN SHARED
+BROWSE FIELDS name, type, exclude, mainprog
+```
+
+## What the TYPE codes mean
+
+| Code | File type |
+|---|---|
+| P | Programs |
+| K | Forms |
+| V | Class libraries |
+| R | Reports |
+| B | Labels |
+| M | Menus |
+| d | Databases |
+| D | Tables |
+| Q | Queries |
+| L | API libraries (FLL) |
+| T | Text files |
+| i | Icons |
+| Z | Applications |
+| x | Other files |
+
+The first row, type `H`, is the project header, not a file.
+
+Two more fields matter. `EXCLUDE` marks files that are part of the project but left out of the build. `MAINPROG` marks the program the application starts from.
+
+## What the project file does not tell you
+
+Counting rows gives you the number of files in the project. It does not give you the size of the migration, for three reasons.
+
+1. **Files outside the project.** Real application folders hold source files that no project includes. Some are dead; some are run with `DO` or `DO FORM` by name and are very much alive.
+2. **Files listed but missing.** A project can point to files that are no longer in the folder. If the compiled application still runs, the source may be lost, with only the compiled `.exe` or `.app` left.
+3. **Old copies.** Folders fill up with `quotes22.scx`, `frm_old.scx`, `_beta` versions and backup folders. They inflate every count. On two open-source FoxPro ERPs we scanned, **19–28% of the code** was exact duplicates or likely old copies.
+
+## A better measure
+
+The scanner reads every project and every file in the folder, and reports:
+
+- files by type, the main program and excluded files, per project
+- files the project lists but the folder does not have
+- source files that are in no project
+- exact duplicates (the same code once whitespace and case are ignored) and likely old copies
+- lines of code, procedures, forms, classes, reports and labels
+
+The size class it gives is calculated **after** removing duplicates and old copies, because that is the code you would actually migrate. Confirm the list with your team before you rely on it: a file that looks like an old copy may still be in use.
+
+## Why it matters for the price
+
+Migration effort follows size and risk. If a third of the folder is old copies, an estimate based on the raw count is a third too high. If important code sits outside the project, an estimate based on the PJX alone is too low.
+
+The [free scan](/free-scan) gives you both numbers on your own PC. The [Migration Assessment](/assessment) is priced on the cleaned-up size.

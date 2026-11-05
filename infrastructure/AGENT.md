@@ -20,7 +20,7 @@ Merge with **merge commit** after CI passes. Delete local epic branch; keep remo
 | Workflow | Trigger | Purpose |
 |---|---|---|
 | `.github/workflows/ci.yml` | PR + push to integration | lint, typecheck, test, build, npm audit |
-| `.github/workflows/lighthouse.yml` | PR | Lighthouse CI budgets |
+| `.github/workflows/lighthouse.yml` | PR + push to `main` | Lighthouse CI: 5 pages × 3 runs (mobile); a11y ≥ 95, best practices ≥ 95, SEO 100, performance fail < 90 / target 95; config `frontend/lighthouserc.json` |
 
 ## Vercel
 

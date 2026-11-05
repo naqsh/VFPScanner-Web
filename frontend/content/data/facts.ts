@@ -9,6 +9,7 @@ import type { Fact } from "@/components/sections/fact-block";
 const IHK_STUTTGART =
   "https://www.ihk.de/stuttgart/fuer-unternehmen/recht-und-steuern/steuerrecht/steuermeldungen/e-rechnungen-5864496";
 const IRS_QUICKALERTS_SEP_2026 = "https://www.irs.gov/pub/irs-efile/quickalerts-september-2026.pdf";
+const IRS_PUB_5719 = "https://www.irs.gov/pub/irs-pdf/p5719.pdf";
 
 export const facts = {
   deReceive: {
@@ -46,6 +47,36 @@ export const facts = {
       "IRIS is the only IRS system for e-filing information returns, including prior-year and corrected returns.",
     source: { label: "IRS QuickAlerts, September 2026", href: IRS_QUICKALERTS_SEP_2026 },
     lastReviewed: "2026-11-04",
+    verified: true,
+  },
+  deUntil2026: {
+    effective: "Until 31 December 2026",
+    statement:
+      "Paper invoices are still allowed for domestic B2B sales. Other electronic formats, such as a PDF by email, need the recipient's agreement.",
+    source: { label: "IHK Stuttgart, based on BMF guidance", href: IHK_STUTTGART },
+    lastReviewed: "2026-11-05",
+    verified: true,
+  },
+  deEdi2027: {
+    effective: "During 2027",
+    statement: "EDI invoices may still be issued if the recipient agrees. From 1 January 2028 the new requirements apply to everyone.",
+    source: { label: "IHK Stuttgart, based on BMF guidance", href: IHK_STUTTGART },
+    lastReviewed: "2026-11-05",
+    verified: true,
+  },
+  usIrisPortal: {
+    effective: "IRIS Taxpayer Portal",
+    statement: "Returns can be keyed in by hand or uploaded as CSV files of up to 100 records per upload. No special software is needed.",
+    source: { label: "IRS Publication 5719 (processing year 2027)", href: IRS_PUB_5719 },
+    lastReviewed: "2026-11-05",
+    verified: true,
+  },
+  usIrisTcc: {
+    effective: "IRIS access",
+    statement:
+      "Filing through IRIS needs an IRIS Transmitter Control Code (TCC). A TCC obtained for FIRE cannot be used for IRIS.",
+    source: { label: "IRS Publication 5719, section 3.1", href: IRS_PUB_5719 },
+    lastReviewed: "2026-11-05",
     verified: true,
   },
 } satisfies Record<string, Fact>;

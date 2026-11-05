@@ -45,13 +45,15 @@ frontend/
 │   ├── layout/     ✅ SiteHeader, NavLinks, MobileMenu (<dialog>), SiteFooter
 │   ├── sections/   ✅ Section, Hero, FeatureGrid, Steps, ProofStats, PricingTable, Faq, CtaBand, FactBlock
 │   ├── ui/         ✅ button, badge, card, input
-│   └── motion/ · seo/ · assistant/   (VW-E4, VW-E5, VW-E6)
+│   ├── seo/        ✅ JsonLd, Breadcrumbs (visible trail + BreadcrumbList)
+│   ├── content/    ✅ PageHeader, Prose, CompliancePage, BlogPost, LegalPage, scanner tables
+│   └── motion/ · assistant/   (VW-E4, VW-E6)
 ├── content/  ✅
 │   ├── pages/*.mdx      # copy; `export const meta` (title, description, updated, faq, noindex, template)
 │   ├── pages/legal/*.mdx
 │   └── data/*.ts        # structured copy: facts.ts (verified register), scanner.ts (from Rules.cs), home.ts
-├── lib/  ✅ env.ts · security-headers.ts · site.ts · navigation.ts · pricing.ts · home-content.ts · utils.ts
-│         later: payments/ · supabase/ · seo/ · schema/ · analytics/
+├── lib/  ✅ env · security-headers · site · navigation · pricing · content · faq · blog · pages (registry) · schema (JSON-LD) · llms · mdx-sources · og · fonts · utils
+│         later: payments/ · supabase/ · analytics/
 ├── hooks/ · public/ · __tests__/ · e2e/
 ```
 
@@ -66,6 +68,7 @@ frontend/
 | SEO | Metadata + JSON-LD on every page (see `.cursor/rules/seo-geo.mdc`) |
 | Config errors | `lib/env.ts` validates env (Zod); dev banner lists unconfigured features |
 | Content | Copy lives in `content/`; pages call `defineMeta()` + `pageMetadata()` from `lib/content.ts`; FAQ answers exist once in `faq.mdx` (`lib/faq.ts` slices them) |
+| SEO | New page → add to `lib/pages.ts` and `lib/mdx-sources.ts`, give it an `opengraph-image.tsx`, breadcrumbs and JSON-LD; tests fail if a page is missing from the registry |
 | Facts | Dated claims only from `content/data/facts.ts` with `verified: true` and an official source |
 | Navigation | All links from `lib/navigation.ts`; unbuilt pages land on `app/not-found.tsx` |
 | Sections | Server Components, content via props; one `<h1>` per page (Hero); `Section` gives each block an `aria-labelledby` heading |

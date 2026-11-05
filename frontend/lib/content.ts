@@ -24,10 +24,12 @@ export const pageMetaSchema = z
   .object({
     /** <title> before the site suffix; keep short for search results */
     title: z.string().trim().min(3).max(60),
-    /** meta description: one or two sentences, 50–160 characters */
-    description: z.string().trim().min(50).max(160),
+    /** meta description: one or two sentences, 50–155 characters (search results cut longer text) */
+    description: z.string().trim().min(50).max(155),
     /** last content review, YYYY-MM-DD */
     updated: z.iso.date(),
+    /** first publication (articles, compliance pages, blog), YYYY-MM-DD */
+    published: z.iso.date().optional(),
     faq: z.array(faqItemSchema).default([]),
     noindex: z.boolean().default(false),
     /** legal/other templates that must be reviewed by the owner before launch */

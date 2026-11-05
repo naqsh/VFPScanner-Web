@@ -8,10 +8,12 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { FeatureGrid } from "@/components/sections/feature-grid";
 import { Section } from "@/components/sections/section";
 import { buttonVariants } from "@/components/ui/button";
-import { complianceSignals, fileTypes, knownLimits, riskRules, SCANNER_VERSION } from "@/content/data/scanner";
+import { complianceSignals, fileTypes, knownLimits, riskRules, SCANNER_VERSION, scannerFeatures } from "@/content/data/scanner";
 import Body, { meta as rawMeta } from "@/content/pages/scanner.mdx";
 import { defineMeta, pageMetadata } from "@/lib/content";
 import { primaryCta } from "@/lib/navigation";
+import { JsonLd } from "@/components/seo/json-ld";
+import { scannerApp } from "@/lib/schema";
 
 const meta = defineMeta("content/pages/scanner.mdx", rawMeta);
 export const metadata = pageMetadata(meta, "/scanner");
@@ -41,7 +43,9 @@ const dataProfile = [
 export default function ScannerPage() {
   return (
     <main id="main" className="flex-1">
+      <JsonLd data={scannerApp(scannerFeatures)} />
       <PageHeader
+        breadcrumbs={[{ name: "Scanner", path: "/scanner" }]}
         eyebrow={`The scanner · v${SCANNER_VERSION}`}
         title="See what your FoxPro application contains, without sending it anywhere"
         lead="A read-only scanner that reads FoxPro's own file formats, finds the code that makes migration hard, and profiles your data for SQL Server."

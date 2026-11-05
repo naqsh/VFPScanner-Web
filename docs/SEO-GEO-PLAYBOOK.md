@@ -57,7 +57,21 @@
 | US: last day to file through FIRE 19 Nov 2026, 3 p.m. ET; from Jan 2027 IRIS is the only e-filing system for information returns | [IRS QuickAlerts, September 2026](https://www.irs.gov/pub/irs-efile/quickalerts-september-2026.pdf) | ✅ verified 2026-11-04 (earlier "end of December" was wrong) |
 | .NET 8 end of support 10 Nov 2026 (migration target = .NET 10 LTS) | [.NET Blog](https://devblogs.microsoft.com/dotnet/dotnet-8-9-end-of-support/) | ✅ verified 2026-11-04 |
 
+| Germany: until 31 Dec 2026 paper always allowed, other e-formats with recipient consent; EDI with consent during 2027; exceptions (≤ €250, tickets, B2C) | IHK Stuttgart (as above) | ✅ verified 2026-11-05 |
+| US: IRIS Taxpayer Portal accepts manual entry or CSV, up to 100 records per upload; A2A uses XML; a FIRE TCC cannot be used for IRIS | [IRS Publication 5719 (PY 2027)](https://www.irs.gov/pub/irs-pdf/p5719.pdf) | ✅ verified 2026-11-05 |
+
 Code copy of this register: `frontend/content/data/facts.ts` (unit test fails if any fact is unverified).
+
+## 6a. How it is implemented (VW-E5)
+
+| Piece | Where |
+|---|---|
+| Page registry (sitemap, llms) | `frontend/lib/pages.ts` — add every new page here and its MDX path in `lib/mdx-sources.ts` (a test fails otherwise) |
+| JSON-LD builders | `frontend/lib/schema.ts`, rendered by `components/seo/json-ld.tsx`; breadcrumbs via `components/seo/breadcrumbs.tsx` |
+| Share images | `lib/og.tsx` + `opengraph-image.tsx` per route (static, 1200×630) |
+| robots / sitemap / llms | `app/robots.ts`, `app/sitemap.ts`, `app/llms.txt/route.ts`, `app/llms-full.txt/route.ts` |
+| Heading anchors | `rehype-slug` (MDX h2/h3 get ids for deep links) |
+| Lighthouse budgets | `frontend/lighthouserc.json`, `.github/workflows/lighthouse.yml` |
 
 ## 6. Technical SEO checklist
 
